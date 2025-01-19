@@ -130,7 +130,16 @@ local function playAnimation(id, details)
 
     return animationTrack
 end
-
+local hrp = char:FindFirstChild("HumanoidRootPart")
+local bloodRainVFX = Instance.new("Part", workspace)
+bloodRainVFX.Size = Vector3.new(500, 0.1, 500)
+bloodRainVFX.CFrame = hrp.CFrame * CFrame.new(0, 500, 0)
+bloodRainVFX.Tranparency = 1
+bloodRainVFX.CanCollide = false
+bloodRainVFX.CastShadow = false
+local weld = Instance.new("Weld", hrp)
+weld.Part0 = hrp
+weld.Part1 = bloodRainVFX
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
 local handlers = {
@@ -276,7 +285,7 @@ local handlers = {
     end,
     
     amove2 = function()
-        print("choso awk")
+        
     end,
 
     amove3 = function()
