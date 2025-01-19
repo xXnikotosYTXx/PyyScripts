@@ -265,7 +265,7 @@ local handlers = {
         vfx.Color = ColorSequence.new(Color3.new(1, 1, 1))
         vfx.LightEmission = 1
         vfx.LightInfluence = 1
-        vfx.Orientation = Enum.ParticleOrientation.Camera
+        vfx.Orientation = Enum.ParticleOrientation.FacingCamera
         vfx.Size = NumberSequence.new({
             NumberSequenceKeypoint.new(0, 0),
             NumberSequenceKeypoint.new(0.75, 10),
@@ -287,7 +287,7 @@ local handlers = {
         vfxx.Color = ColorSequence.new(Color3.new(1, 0, 0))
         vfxx.LightEmission = 1
         vfxx.LightInfluence = 0
-        vfxx.Orientation = Enum.ParticleOrientation.CameraWorldUp
+        vfxx.Orientation = Enum.ParticleOrientation.FacingCameraWorldUp
         vfxx.Size = NumberSequence.new(10)
         vfxx.Texture = "rbxassetid://75199820179098"
         vfxx.Transparency = NumberSequence.new(0)
