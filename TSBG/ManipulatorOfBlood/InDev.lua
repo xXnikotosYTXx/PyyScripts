@@ -252,7 +252,6 @@ local handlers = {
     end,
 
     move4 = function()
-        print("choso awk")
     end,
 
     amove1 = function()
@@ -266,7 +265,7 @@ local handlers = {
         vfx.Color = ColorSequence.new(Color3.new(1, 1, 1))
         vfx.LightEmission = 1
         vfx.LightInfluence = 1
-        vfx.Orientation = Enum.ParticleOrientation.CameraWorldUp
+        vfx.Orientation = Enum.ParticleOrientation.Camera
         vfx.Size = NumberSequence.new({
             NumberSequenceKeypoint.new(0, 0),
             NumberSequenceKeypoint.new(0.75, 10),
@@ -274,7 +273,6 @@ local handlers = {
         })
         vfx.Texture = "rbxassetid://71099725986255"
         vfx.Transparency = NumberSequence.new(0)
-        vfx.EmissionDirection = Enum.NormalId.Bottom
         vfx.Lifetime = NumberRange.new(3)
         vfx.RotSpeed = NumberRange.new(-160)
         vfx.Speed = NumberRange.new(0)
@@ -282,7 +280,21 @@ local handlers = {
         vfx:Emit(1)
         
         task.wait(3)
-        vfx:Destroy()
+        att:Destroy()
+
+        local vfxx = Instance.new("ParticleEmitter")
+        vfxx.Parent = bloodRainVFX
+        vfxx.Color = ColorSequence.new(Color3.new(1, 0, 0))
+        vfxx.LightEmission = 1
+        vfxx.LightInfluence = 0
+        vfxx.Orientation = Enum.ParticleOrientation.CameraWorldUp
+        vfxx.Size = NumberSequence.new(10)
+        vfxx.Texture = "rbxassetid://75199820179098"
+        vfxx.Transparency = NumberSequence.new(0)
+        vfxx.EmissionDirection = Enum.NormalId.Bottom
+        vfxx.Lifetime = NumberRange.new(5)
+        vfxx.Speed = NumberRange.new(25)
+        vfxx.Rate = 60
     end,
 
     amove3 = function()
@@ -298,7 +310,7 @@ local handlers = {
         end
         bloodvfx:Destroy()
 
-        task.wait(7)
+        task.wait(10)
         local blood = Instance.new("Part")
         blood.Size = Vector3.new(1, 1, 500)
         blood.CFrame = hrp.CFrame * CFrame.new(0, 0, -250)
