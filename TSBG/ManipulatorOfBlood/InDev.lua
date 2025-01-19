@@ -135,6 +135,7 @@ local function playAnimation(id, details)
     return animationTrack
 end
 local hrp = char:FindFirstChild("HumanoidRootPart")
+local hum = char:FindFirstChildOfClass("Humanoid")
 local bloodRainVFX = Instance.new("Part", workspace)
 bloodRainVFX.Size = Vector3.new(500, 0.1, 500)
 bloodRainVFX.CFrame = hrp.CFrame * CFrame.new(0, 500, 0)
@@ -146,6 +147,9 @@ task.spawn(function()
         bloodRainVFX.CFrame = hrp.CFrame * CFrame.new(0, 500, 0)
         task.wait()
     end
+end)
+hum.Died:Connect(function()
+    bloodRainVFX:Destroy()
 end)
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
