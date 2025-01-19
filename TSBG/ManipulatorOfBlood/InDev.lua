@@ -141,9 +141,12 @@ bloodRainVFX.CFrame = hrp.CFrame * CFrame.new(0, 500, 0)
 bloodRainVFX.Transparency = 1
 bloodRainVFX.CanCollide = false
 bloodRainVFX.CastShadow = false
-local weld = Instance.new("Weld", hrp)
-weld.Part0 = hrp
-weld.Part1 = bloodRainVFX
+task.spawn(function()
+    while true do
+        bloodRainVFX.CFrame = hrp.CFrame * CFrame.new(0, 500, 0)
+        task.wait()
+    end
+end)
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
 local handlers = {
