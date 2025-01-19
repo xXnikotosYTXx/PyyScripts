@@ -90,7 +90,7 @@ local newAnimations = {
     move3 = "17838619895", -- Replace with your new move 3 animation ID
     move4 = "18179181663", -- Replace with your new move 4 animation ID
     amove1 = "12509505723", -- Replace with your new move awakening 1 animation ID
-    amove2 = "11365563255", -- Replace with your new move awakening 2 animation ID
+    amove2 = "17122171961", -- Replace with your new move awakening 2 animation ID
     amove3 = "12983333733", -- Replace with your new move awakening 3 animation ID
     amove4 = "13927612951", -- Replace with your new move awakening 4 animation ID
 }
@@ -334,6 +334,7 @@ local handlers = {
 local animDt = {
     move2 = { Speed = 2 },
     amove1 = { Speed = 0.1 },
+    amove2 = { Speed = 0.2 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
