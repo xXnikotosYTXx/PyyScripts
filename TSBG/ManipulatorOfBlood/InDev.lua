@@ -248,6 +248,36 @@ local handlers = {
     end,
 
     amove1 = function()
+    end,
+    
+    amove2 = function()
+        local att = Instance.new("Attachment")
+        att.Parent = hrp
+        local vfx = Instance.new("ParticleEmitter")
+        vfx.Enabled = false
+        vfx.Color = ColorSequence.new(Color3.new(1, 1, 1))
+        vfx.LightEmission = 1
+        vfx.LightInfluence = 1
+        vfx.Orientation = Enum.ParticleOrientation.CameraWorldUp
+        vfx.Size = NumberSequence.new({
+            NumberSequenceKeypoint.new(0, 0),
+            NumberSequenceKeypoint.new(0.75, 10),
+            NumberSequenceKeypoint.new(1, 0),
+        })
+        vfx.Texture = "rbxassetid://71099725986255"
+        vfx.Transparency = NumberSequence.new(0)
+        vfx.EmissionDirection = Enum.NormalId.Bottom
+        vfx.Lifetime = NumberRange.new(3)
+        vfx.RotSpeed = NumberRange.new(-160)
+        vfx.Speed = NumberRange.new(0)
+        vfx.Parent = att
+        vfx:Emit(1)
+        
+        task.wait(3)
+        vfx:Destroy()
+    end,
+
+    amove3 = function()
         local hrp = char:FindFirstChild("HumanoidRootPart")
 
         local bloodvfx = game.ReplicatedStorage.Resources.BloodSplatter.Attachment:Clone()
@@ -285,14 +315,6 @@ local handlers = {
             end
         end
         game:GetService("Debris"):AddItem(blood, 1)
-    end,
-    
-    amove2 = function()
-        
-    end,
-
-    amove3 = function()
-        print("choso awk")
     end,
 
     amove4 = function()
