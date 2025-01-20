@@ -348,7 +348,7 @@ local handlers = {
 local animDt = {
     move2 = { Speed = 2 },
     amove1 = { Speed = 0.1 },
-    amove2 = { Speed = 0.2 },
+    amove2 = { Speed = 0.3 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
