@@ -285,15 +285,15 @@ local handlers = {
         local vfxx = Instance.new("ParticleEmitter")
         vfxx.Parent = bloodRainVFX
         vfxx.Color = ColorSequence.new(Color3.new(1, 0, 0))
-        vfxx.LightEmission = 1
-        vfxx.LightInfluence = 0
+        vfxx.LightEmission = 0
+        vfxx.LightInfluence = 1
         vfxx.Orientation = Enum.ParticleOrientation.FacingCameraWorldUp
         vfxx.Size = NumberSequence.new(10)
         vfxx.Texture = "rbxassetid://75199820179098"
         vfxx.Transparency = NumberSequence.new(0)
         vfxx.EmissionDirection = Enum.NormalId.Bottom
-        vfxx.Lifetime = NumberRange.new(5)
-        vfxx.Speed = NumberRange.new(25)
+        vfxx.Lifetime = NumberRange.new(60)
+        vfxx.Speed = NumberRange.new(50)
         vfxx.Rate = 60
     end,
 
