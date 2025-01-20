@@ -13,10 +13,12 @@ if bat then char:FindFirstChild("#BATWEAPON"):Destroy() end
 local plrgui:PlayerGui = lplr:FindFirstChild("PlayerGui")
 local gui:ScreenGui = plrgui:FindFirstChild("ScreenGui")
 local ultbar:Frame = gui:FindFirstChild("MagicHealth")
+local ultbarclr:Frame = ultbar:FindFirstChild("Health").Bar.Bar
 local ulttext:TextButton = ultbar:FindFirstChild("TextLabel")
 
--- Awakening text
+-- Awakening text & color
 ulttext.Text = "Missing Brother"
+ultbarclr.BackgroundColor3 = Color3.fromRGB(136, 0, 0) -- In RGB values (red, green, blue)
 
 local hotbar:ScreenGui = plrgui:FindFirstChild("Hotbar")
 local backpack = hotbar:FindFirstChild("Backpack")
