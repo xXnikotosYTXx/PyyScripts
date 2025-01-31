@@ -31,10 +31,10 @@ local b1, b2, b3, b4 = bb1["ToolName"], bb2["ToolName"], bb3["ToolName"], bb4["T
 
 -- Move names
 local function SetMoveNames()
-    b1.Text = "Piercing Blood"
-    b2.Text = "Blood Squirt"
-    b3.Text = "Kickback"
-    b4.Text = "Uprise"
+    b1.Text = "Dilating Strike"
+    b2.Text = "Ravaging Punches"
+    b3.Text = "Swift Kick"
+    b4.Text = "Collapse"
 end
 SetMoveNames()
 
@@ -85,7 +85,7 @@ local newAnimations = {
     ldash = "10480796021", -- Replace with your new left dash animation ID
     rdash = "10480793962", -- Replace with your new right dash animation ID
     awk = "13716964686", -- Replace with your new awakening animation ID
-    move1 = "12509505723", -- Replace with your new move 1 animation ID
+    move1 = "16945550029", -- Replace with your new move 1 animation ID
     move2 = "12618271998", -- Replace with your new move 2 animation ID
     move3 = "17838619895", -- Replace with your new move 3 animation ID
     move4 = "18179181663", -- Replace with your new move 4 animation ID
