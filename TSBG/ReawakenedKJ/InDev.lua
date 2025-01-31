@@ -86,7 +86,7 @@ local newAnimations = {
     rdash = "10480793962", -- Replace with your new right dash animation ID
     awk = "13716964686", -- Replace with your new awakening animation ID
     move1 = "16945550029", -- Replace with your new move 1 animation ID
-    move2 = "12618271998", -- Replace with your new move 2 animation ID
+    move2 = "16945550029", -- Replace with your new move 2 animation ID
     move3 = "17838619895", -- Replace with your new move 3 animation ID
     move4 = "18179181663", -- Replace with your new move 4 animation ID
     amove1 = "18715881168", -- Replace with your new move awakening 1 animation ID
@@ -192,6 +192,7 @@ local animDt = {
     m3 = { Speed = 1.3 },
     m4 = { Speed = 1.3 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
+    move2 = { TimePosition = 2 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
