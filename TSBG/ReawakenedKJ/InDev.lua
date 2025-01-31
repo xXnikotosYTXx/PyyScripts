@@ -73,10 +73,10 @@ local oldAnimations = {
 
 -- New Animations (Animations that will replace the old ones)
 local newAnimations = {
-    m1 = "17889458563", -- Replace with your new m1 animation ID
-    m2 = "17889461810", -- Replace with your new m2 animation ID
-    m3 = "17889471098", -- Replace with your new m3 animation ID
-    m4 = "17889290569", -- Replace with your new m4 animation ID
+    m1 = "17325510002", -- Replace with your new m1 animation ID
+    m2 = "17325537719", -- Replace with your new m2 animation ID
+    m3 = "17325522388", -- Replace with your new m3 animation ID
+    m4 = "17325537719", -- Replace with your new m4 animation ID
     ds = "10470104242", -- Replace with your new downslam animation ID
     up = "10503381238", -- Replace with your new mini uppercut animation ID
     wc = "15955393872", -- Replace with your new wall combo animation ID
