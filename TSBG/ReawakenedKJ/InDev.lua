@@ -187,7 +187,10 @@ local handlers = {
 
 -- Table of animation data for the animations
 local animDt = {
-    
+    m1 = { Speed = 1.3 },
+    m2 = { Speed = 1.3 },
+    m3 = { Speed = 1.3 },
+    m4 = { Speed = 1.3 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
