@@ -1,0 +1,26 @@
+name: Release Script.zip
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  zip-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Script Folders in TSBG
+        run: |
+          mkdir zips
+          for dir in TSBG/*/; do
+            dir=${dir%/}  # Remove trailing slash
+            zip -r "zips/$(basename "$dir").zip" "$dir"
+          done
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: zips/*.zip
