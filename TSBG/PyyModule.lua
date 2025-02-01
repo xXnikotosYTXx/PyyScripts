@@ -189,7 +189,7 @@ function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
 
     local origin = att.WorldCFrame
 
-    att:Destroy()
+    game.Debris:AddItem(origin, 60)
 
     local spentLifetime = 0
     for _, v in pairs(keyframes) do
