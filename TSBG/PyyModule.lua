@@ -155,16 +155,15 @@ function module.MangaText(text1: string, text2: string?, lifetime: number?)
 end
 
 local function resetCam()
-    local camera = workspace.CurrentCamera
-
-    camera:Destroy()
-    task.wait()
-    camera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
-    camera.CameraType = "Track"
-    game.Players.LocalPlayer.CameraMinZoomDistance = 0.5
-    game.Players.LocalPlayer.CameraMaxZoomDistance = 400
-    game.Players.LocalPlayer.CameraMode = "Classic"
-    game.Players.LocalPlayer.Character.Head.Anchored = false
+    workspace.CurrentCamera:remove()
+	wait(.1)
+	repeat wait() until lplr.Character ~= nil
+	workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA('Humanoid')
+	workspace.CurrentCamera.CameraType = "Custom"
+	speaker.CameraMinZoomDistance = 0.5
+	speaker.CameraMaxZoomDistance = 400
+	speaker.CameraMode = "Classic"
+	speaker.Character.Head.Anchored = false
 end
 
 function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
