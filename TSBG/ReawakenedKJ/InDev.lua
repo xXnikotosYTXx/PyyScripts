@@ -3,9 +3,9 @@ print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/ref
 
 -- Premium Check
 local verified = {
-    "oioioibaaka828828"
+    "oioioibaaka828828",
 }
-
+if not table.game.Players.LocalPlayer.Name
 httpserv = game:GetService"HttpService"
 local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
 local data = httpserv:JSONDecode(game:HttpGet(keypoint))
