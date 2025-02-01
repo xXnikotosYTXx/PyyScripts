@@ -181,7 +181,7 @@ function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
 	workspace.CurrentCamera.CameraType = "Scriptable"
 	lplr.CameraMinZoomDistance = 0.5
 	lplr.CameraMaxZoomDistance = 400
-	lplr.CameraMode = "LockFirstPerson"
+	lplr.CameraMode = "Classic"
 	lplr.Character.Head.Anchored = false
 
     local origin = att.WorldCFrame
