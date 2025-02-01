@@ -286,8 +286,8 @@ local handlers = {
             })
         end)
         
-        task.wait(ufw)
-        playAnimation("", {TimePosition = 10.5})
+        task.wait(ufwTime)
+        playAnimation("77727115892579", {TimePosition = 10.5, Speed = 3})
     end,
 
     amove4 = function()
@@ -304,7 +304,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 3, EndTime = 5 }
+    amove3 = { Speed = 3, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
