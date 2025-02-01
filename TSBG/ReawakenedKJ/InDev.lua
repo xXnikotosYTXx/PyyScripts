@@ -7,7 +7,10 @@ local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
 local data = httpserv:JSONDecode(game:HttpGet(keypoint))
 local isValid = false
 for _, v in pairs(data) do
-    if game.Players:GetDataFromUsernameAsync(v) == game.Players.LocalPlayer.UserId then
+    local suc, id = pcall(function()
+        return game.Players:GetDataFromUsernameAsync(v)
+    end)
+    if id == game.Players.LocalPlayer.UserId then
         isValid = true
     end
 end
