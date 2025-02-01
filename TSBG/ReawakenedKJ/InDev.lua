@@ -25,7 +25,6 @@ local lplr = game.Players.LocalPlayer
 
 local char = lplr.Character or lplr.CharacterAdded:Wait()
 
-
 -- Object Removers (will remove vfx on the weapons, though)
 local katana1 = false -- Make true if you want to remove Blade Master's katana
 local katana2 = false -- Make true if you want to remove Sonic's katana
@@ -158,6 +157,12 @@ local function playAnimation(id, details)
     return animationTrack
 end
 
+-- Removing every bodyvelocity that gets added to the character Y velocity for Collapse
+char.DescendantAdded:Connect(function(c)
+    if c:IsA("BodyVelocity") then
+        c.Velocity = Vector3.new(c.Velocity.X, 0, c.Velocity.Z)
+    end
+end)
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
 local handlers = {
@@ -188,26 +193,39 @@ local handlers = {
     end,
 
     move4 = function()
-        local vfx1 = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast:Clone()
+        task.wait(0.5)
+        local vfx = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast
+        
+        local vfx1 = vfx:Clone()
         vfx1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-        local vfx2 = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast:Clone()
+        local vfx2 = vfx:Clone()
         vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
         
-
-        for _, child in pairs(vfx1:GetDescendants()) do
+        for _, child in pairs(vfx1:GetChildren()) do
             if child:IsA("ParticleEmitter") then
-                child.Enabled = false
+                
+                child.Speed = 0.5
                 child.Color = ColorSequence.new(Color3.new(0.25, 0.3, 0.25))
+                child.Size = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 25),
+                    NumberSequenceKeypoint.new(1, 50),
+                })
+                
                 child:Emit(4)
-                child.Enabled = true
             end
         end
-        for _, child: ParticleEmitter in pairs(vfx2:GetDescendants()) do
+        
+        for _, child in pairs(vfx2:GetChildren()) do
             if child:IsA("ParticleEmitter") then
-                child.Enabled = false
+                
+                child.Speed = 0.5
                 child.Color = ColorSequence.new(Color3.new(1, 0, 0))
+                child.Size = NumberSequence.new({
+                    NumberSequenceKeypoint.new(0, 15),
+                    NumberSequenceKeypoint.new(1, 25),
+                })
+                
                 child:Emit(6)
-                child.Enabled = true
             end
         end
     end,
