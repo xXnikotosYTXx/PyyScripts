@@ -194,14 +194,14 @@ local handlers = {
         sound1.Parent = char.Head
         sound2.Parent = char.Head
         sound1.SoundId = "rbxassetid://17150550559"
-        sound2.SoundId = ""
+        sound2.SoundId = "rbxassetid://17150550302"
         sound1:Play()
         sound2:Play()
         
         task.wait(4)
         loop = false
         sound1:Destroy()
-        sound2:Destrou
+        sound2:Destroy()
         hotbar.Enabled = true
         char.Humanoid.WalkSpeed = 16
         char.Humanoid.JumpPower = 50
