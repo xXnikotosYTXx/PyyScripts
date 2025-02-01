@@ -183,6 +183,9 @@ function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
 	lplr.CameraMaxZoomDistance = 400
 	lplr.CameraMode = "Classic"
 	lplr.Character.Head.Anchored = false
+	
+	local att = Instance.new("Attachment")
+	att.Parent = char.HumanoidRootPart
 
     local origin = att.WorldCFrame
 
