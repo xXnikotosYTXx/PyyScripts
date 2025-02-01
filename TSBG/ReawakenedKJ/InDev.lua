@@ -189,14 +189,19 @@ local handlers = {
             end
         end)
         
-        local sound = Instance.new("Sound")
-        sound.Parent = char.Head
-        sound.SoundId = ""
-        sound:Play()
+        local sound1 = Instance.new("Sound")
+        local sound2 = Instance.new("Sound")
+        sound1.Parent = char.Head
+        sound2.Parent = char.Head
+        sound1.SoundId = "rbxassetid://17150550559"
+        sound2.SoundId = ""
+        sound1:Play()
+        sound2:Play()
         
         task.wait(4)
         loop = false
-        sound:Destroy()
+        sound1:Destroy()
+        sound2:Destrou
         hotbar.Enabled = true
         char.Humanoid.WalkSpeed = 16
         char.Humanoid.JumpPower = 50
