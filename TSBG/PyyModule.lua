@@ -184,30 +184,25 @@ function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
 
     att:Destroy()
 
-    local totalDuration = 0
-    for _, v in pairs(keyframes) do
-        totalDuration = totalDuration + v.Time
-    end
-
     local spentLifetime = 0
-    for i, v in pairs(keyframes) do
-        local timeposition = v.Time
+    for _, v in pairs(keyframes) do
+        local alpha = v.Time  -- The position in the lifetime (0 to 1)
         local offset = v.Offset
 
-        -- Determine time for this keyframe's transition
-        local tweenTime = (timeposition / totalDuration) * lifetime - spentLifetime
+        -- Calculate the actual time for this keyframe based on alpha
+        local targetTime = alpha * lifetime
 
-        -- If this is the first keyframe, set the camera directly
-        if timeposition == 0 then
-            camera.CFrame = origin * offset
-        else
+        -- Duration for the transition based on the position
+        local tweenTime = targetTime - spentLifetime
+
+        if tweenTime > 0 then
             local tween = ts:Create(camera, TweenInfo.new(tweenTime), {CFrame = origin * offset})
             tween:Play()
 
-            tween.Completed:Wait() -- Wait for the tween to complete
+            tween.Completed:Wait()
         end
 
-        spentLifetime = spentLifetime + tweenTime -- Accumulate the lifetime
+        spentLifetime = targetTime
     end
 
     resetCam()
