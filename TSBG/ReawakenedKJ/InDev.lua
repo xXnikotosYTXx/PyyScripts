@@ -116,7 +116,7 @@ local newAnimations = {
     move4 = "17325254223", -- Replace with your new move 4 animation ID
     amove1 = "18715881168", -- Replace with your new move awakening 1 animation ID
     amove2 = "11365563255", -- Replace with your new move awakening 2 animation ID
-    amove3 = "12983333733", -- Replace with your new move awakening 3 animation ID
+    amove3 = "77727115892579", -- Replace with your new move awakening 3 animation ID
     amove4 = "13927612951", -- Replace with your new move awakening 4 animation ID
 }
 
