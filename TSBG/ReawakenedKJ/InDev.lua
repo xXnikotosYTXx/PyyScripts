@@ -195,10 +195,12 @@ local handlers = {
         sound2.Parent = char.Head
         sound1.SoundId = "rbxassetid://17150550559"
         sound2.SoundId = "rbxassetid://17150550302"
+        sound1.Volume = 2
+        sound2.Volume = 2
         sound1:Play()
         sound2:Play()
         
-        task.wait(4)
+        task.wait(5)
         loop = false
         sound1:Destroy()
         sound2:Destroy()
