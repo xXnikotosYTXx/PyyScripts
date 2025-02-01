@@ -280,9 +280,9 @@ local handlers = {
     amove3 = function()
         task.spawn(function()
             pyymod.AnimateCamera(15, {
-                {Time = 0, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
-                {Time = 0.15, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
-                {Time = 1, CFrame.new(0, 1, -7.5)},
+                {Time = 0, Offset = CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
+                {Time = 0.15, Offset = CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
+                {Time = 1, Offset = CFrame.new(0, 1, -7.5)},
             })
         end)
         
