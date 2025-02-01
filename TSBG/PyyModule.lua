@@ -160,10 +160,10 @@ local function resetCam()
 	repeat wait() until lplr.Character ~= nil
 	workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA('Humanoid')
 	workspace.CurrentCamera.CameraType = "Custom"
-	speaker.CameraMinZoomDistance = 0.5
-	speaker.CameraMaxZoomDistance = 400
-	speaker.CameraMode = "Classic"
-	speaker.Character.Head.Anchored = false
+	lplr.CameraMinZoomDistance = 0.5
+	lplr.CameraMaxZoomDistance = 400
+	lplr.CameraMode = "Classic"
+	lplr.Character.Head.Anchored = false
 end
 
 function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
@@ -174,10 +174,15 @@ function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
     -- Reset camera
     resetCam()
 
-    camera.CameraType = Enum.CameraType.Scriptable
-    local hrp = char.HumanoidRootPart
-    local att = Instance.new("Attachment")
-    att.Parent = hrp
+    workspace.CurrentCamera:remove()
+	wait(.1)
+	repeat wait() until lplr.Character ~= nil
+	workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA('Humanoid')
+	workspace.CurrentCamera.CameraType = "Custom"
+	lplr.CameraMinZoomDistance = 0.5
+	lplr.CameraMaxZoomDistance = 400
+	lplr.CameraMode = "Classic"
+	lplr.Character.Head.Anchored = false
 
     local origin = att.WorldCFrame
 
