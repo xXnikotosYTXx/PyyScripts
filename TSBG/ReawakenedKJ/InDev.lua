@@ -121,6 +121,10 @@ local newAnimations = {
 }
 
 -- Code/functions to use in the handlers
+
+-- some variables for handlers
+local ufwTime = 5
+
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 end
@@ -282,8 +286,8 @@ local handlers = {
             })
         end)
         
-        task.wait(5)
-        playAnimation()
+        task.wait(ufw)
+        playAnimation("", {TimePosition = 10.5})
     end,
 
     amove4 = function()
