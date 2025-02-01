@@ -37,8 +37,8 @@ local ultbarclr:Frame = ultbar:FindFirstChild("Health").Bar.Bar
 local ulttext:TextButton = ultbar:FindFirstChild("TextLabel")
 
 -- Awakening text & color
-ulttext.Text = "Missing Brother"
-ultbarclr.BackgroundColor3 = Color3.fromRGB(136, 0, 0) -- In RGB values (red, green, blue)
+ulttext.Text = "KJ's Question"
+ultbarclr.BackgroundColor3 = Color3.fromRGB(255, 35, 35) -- In RGB values (red, green, blue)
 
 local hotbar:ScreenGui = plrgui:FindFirstChild("Hotbar")
 local backpack = hotbar:FindFirstChild("Backpack")
@@ -183,7 +183,25 @@ local handlers = {
     end,
 
     move4 = function()
+        local vfx1 = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast:Clone()
+        vfx1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+        local vfx2 = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast:Clone()
+        vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
         
+
+        for _, child in pairs(vfx1:GetDescendants()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(4)
+                child.Enabled = true
+            end
+        end
+        for _, child: ParticleEmitter in pairs(vfx2:GetDescendants()) do
+            if child:IsA("ParticleEmitter") then
+                child.Color = ColorSequence.new(Color3.new(1, 0, 0))
+                child:Emit(6)
+                child.Enabled = true
+            end
+        end
     end,
 
     amove1 = function()
@@ -211,6 +229,7 @@ local animDt = {
     m4 = { Speed = 1.3 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2 },
+    move4 = { TimePosition = 1 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
