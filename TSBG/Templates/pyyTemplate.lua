@@ -165,13 +165,6 @@ local handlers = {
         end
         bloodvfx:Destroy()
 
-        task.spawn(function()
-            while true do
-                blood.Rotation = blood.Rotation + Vector3.new(0, 0, 1)
-                task.wait()
-            end
-        end)
-
         task.wait(0.7)
         if not tr.IsPlaying then
             return

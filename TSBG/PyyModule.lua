@@ -2,6 +2,9 @@ local module = {}
 
 local lplr = game.Players.LocalPlayer
 
+type CFrameKeyframe = { Time: number, Offset: CFrame }
+type CFrameSequence = { CFrameKeyframe }
+
 function module.KJDialogue(dialogue: string, aggro: number?)
     aggro = aggro or 0
     if aggro > 1 or aggro < 0 then error("Aggro level must be in between 0 and 1!") end
@@ -150,6 +153,68 @@ function module.MangaText(text1: string, text2: string?, lifetime: number?)
         end
     end)()
 end
+
+local function resetCam()
+    local camera = workspace.CurrentCamera
+
+    camera:Destroy()
+    task.wait()
+    camera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+    camera.CameraType = "Track"
+    game.Players.LocalPlayer.CameraMinZoomDistance = 0.5
+    game.Players.LocalPlayer.CameraMaxZoomDistance = 400
+    game.Players.LocalPlayer.CameraMode = "Classic"
+    game.Players.LocalPlayer.Character.Head.Anchored = false
+end
+
+function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
+    local ts = game:GetService("TweenService")
+    local camera = workspace.CurrentCamera
+    local char = lplr.Character
+
+    -- Reset camera
+    resetCam()
+
+    camera.CameraType = Enum.CameraType.Scriptable
+    local hrp = char.HumanoidRootPart
+    local att = Instance.new("Attachment")
+    att.Parent = hrp
+
+    local origin = att.WorldCFrame
+
+    att:Destroy()
+
+    local totalDuration = 0
+    for _, v in pairs(keyframes) do
+        totalDuration = totalDuration + v.Time
+    end
+
+    local spentLifetime = 0
+    for i, v in pairs(keyframes) do
+        local timeposition = v.Time
+        local offset = v.Offset
+
+        -- Determine time for this keyframe's transition
+        local tweenTime = (timeposition / totalDuration) * lifetime - spentLifetime
+
+        -- If this is the first keyframe, set the camera directly
+        if timeposition == 0 then
+            camera.CFrame = origin * offset
+        else
+            local tween = ts:Create(camera, TweenInfo.new(tweenTime), {CFrame = origin * offset})
+            tween:Play()
+
+            tween.Completed:Wait() -- Wait for the tween to complete
+        end
+
+        spentLifetime = spentLifetime + tweenTime -- Accumulate the lifetime
+    end
+
+    resetCam()
+end
+
+
+
 
 
 return module
