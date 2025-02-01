@@ -106,7 +106,7 @@ local newAnimations = {
     bdash = "696969", -- Replace with your new back dash animation ID
     ldash = "10480796021", -- Replace with your new left dash animation ID
     rdash = "10480793962", -- Replace with your new right dash animation ID
-    awk = "13716964686", -- Replace with your new awakening animation ID
+    awk = "17140902079", -- Replace with your new awakening animation ID
     move1 = "16945550029", -- Replace with your new move 1 animation ID
     move2 = "16945550029", -- Replace with your new move 2 animation ID
     move3 = "16944265635", -- Replace with your new move 3 animation ID
@@ -177,7 +177,29 @@ local handlers = {
     rdash = function() end,
 
     awk = function()
+        local loop = true
+        task.spawn(function()
+            while loop do
+                hotbar.Enabled = false
+                
+                char.Humanoid.WalkSpeed = 0
+                char.Humanoid.JumpPower = 0
+                
+                task.wait()
+            end
+        end)
         
+        local sound = Instance.new("Sound")
+        sound.Parent = char.Head
+        sound.SoundId = ""
+        sound:Play()
+        
+        task.wait(4)
+        loop = false
+        sound:Destroy()
+        hotbar.Enabled = true
+        char.Humanoid.WalkSpeed = 16
+        char.Humanoid.JumpPower = 50
     end,
 
     move1 = function()
@@ -204,7 +226,7 @@ local handlers = {
         for _, child in pairs(vfx1:GetChildren()) do
             if child:IsA("ParticleEmitter") then
                 
-                child.Speed = 0.5
+                child.Speed = NumberRange.new(0.5)
                 child.Color = ColorSequence.new(Color3.new(0.25, 0.3, 0.25))
                 child.Size = NumberSequence.new({
                     NumberSequenceKeypoint.new(0, 25),
@@ -218,7 +240,7 @@ local handlers = {
         for _, child in pairs(vfx2:GetChildren()) do
             if child:IsA("ParticleEmitter") then
                 
-                child.Speed = 0.5
+                child.Speed = NumberRange.new(0.5)
                 child.Color = ColorSequence.new(Color3.new(1, 0, 0))
                 child.Size = NumberSequence.new({
                     NumberSequenceKeypoint.new(0, 15),
