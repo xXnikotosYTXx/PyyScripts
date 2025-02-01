@@ -1,3 +1,18 @@
+-- LICENSE.md
+print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/LICENSE.md"))
+
+-- Premium Check
+httpserv = game:GetService"HttpService"
+local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
+local data = httpserv:JSONDecode(game:HttpGet(keypoint))
+local isValid = false
+for _, v in pairs(data) do
+    if game.Players:GetDataFromUsernameAsync(v) == game.Players.LocalPlayer.UserId then
+        isValid = true
+    end
+end
+if not isValid then game.Players.LocalPlayer:Kick("User is detected not to be a premium user while using premium script!") end
+
 local lplr = game.Players.LocalPlayer
 
 local char = lplr.Character or lplr.CharacterAdded:Wait()
