@@ -5,7 +5,7 @@ print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/ref
 local verified = {
     "oioioibaaka828828",
 }
-if not table.game.Players.LocalPlayer.Name
+if not table.find(verified, game.Players.LocalPlayer.Name) then
 httpserv = game:GetService"HttpService"
 local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
 local data = httpserv:JSONDecode(game:HttpGet(keypoint))
@@ -19,6 +19,7 @@ for _, v in pairs(data) do
     end
 end
 if not isValid then game.Players.LocalPlayer:Kick("User is detected not to be a premium user while using premium script!") end
+end
 
 local lplr = game.Players.LocalPlayer
 
