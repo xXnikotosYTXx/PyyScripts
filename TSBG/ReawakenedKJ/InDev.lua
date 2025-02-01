@@ -33,6 +33,9 @@ if katana1 then char:FindFirstChild("Sheathe"):Destroy() char:FindFirstChild("#K
 if katana2 then char:FindFirstChild("Sheathed"):Destroy() char:FindFirstChild("#NinjaKATANA"):Destroy() end
 if bat then char:FindFirstChild("#BATWEAPON"):Destroy() end
 
+-- Modules
+local pyymod = loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/TSBG/PyyModule.lua"))()
+
 -- Editing names
 local plrgui:PlayerGui = lplr:FindFirstChild("PlayerGui")
 local gui:ScreenGui = plrgui:FindFirstChild("ScreenGui")
@@ -62,10 +65,10 @@ SetMoveNames()
 
 -- Awakening move names
 local function SetAwkNames()
-    b1.Text = "Vengeance"
-    b2.Text = "Blood Rain"
-    b3.Text = "200% Piercing Blood"
-    b4.Text = "Sky Maelstrom"
+    b1.Text = "20 Series"
+    b2.Text = "Calm Ordnance"
+    b3.Text = "Infinite Modulations"
+    b4.Text = "Quintuplet Solstices"
 end
 
 -- Animations
@@ -176,7 +179,7 @@ local handlers = {
     ldash = function() end,
     rdash = function() end,
 
-    awk = function()
+    awk = function(tr)
         local loop = true
         task.spawn(function()
             while loop do
@@ -195,12 +198,12 @@ local handlers = {
         sound2.Parent = char.Head
         sound1.SoundId = "rbxassetid://17150550559"
         sound2.SoundId = "rbxassetid://17150550302"
-        sound1.Volume = 2
-        sound2.Volume = 2
+        sound1.Volume = 5
+        sound2.Volume = 5
         sound1:Play()
         sound2:Play()
         
-        task.wait(5)
+        task.wait(tr.Length)
         loop = false
         sound1:Destroy()
         sound2:Destroy()
@@ -268,7 +271,13 @@ local handlers = {
     end,
 
     amove3 = function()
-        
+        task.spawn(function()
+            pyymod.AnimateCamera(15, {
+                {Time = 0, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
+                {Time = 0.15, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
+                {Time = 1, CFrame.new(0, 1, -7.5)},
+            })
+        end)
     end,
 
     amove4 = function()
