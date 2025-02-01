@@ -155,6 +155,9 @@ local function playAnimation(id, details)
         if details.Weight then
             animationTrack:AdjustWeight(details.Weight)
         end
+        if details.EndTime then
+            task.delay(details.EndTime, function())
+        end
     end
 
     return animationTrack
@@ -294,6 +297,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2 },
     move4 = { TimePosition = 1 },
+    amove3 = { }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
