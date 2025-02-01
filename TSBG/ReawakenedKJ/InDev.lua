@@ -196,12 +196,15 @@ local handlers = {
 
         for _, child in pairs(vfx1:GetDescendants()) do
             if child:IsA("ParticleEmitter") then
+                child.Enabled = false
+                child.Color = ColorSequence.new(Color3.new(0.25, 0.3, 0.25))
                 child:Emit(4)
                 child.Enabled = true
             end
         end
         for _, child: ParticleEmitter in pairs(vfx2:GetDescendants()) do
             if child:IsA("ParticleEmitter") then
+                child.Enabled = false
                 child.Color = ColorSequence.new(Color3.new(1, 0, 0))
                 child:Emit(6)
                 child.Enabled = true
