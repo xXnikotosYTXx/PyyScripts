@@ -281,6 +281,9 @@ local handlers = {
                 {Time = 1, CFrame.new(0, 1, -7.5)},
             })
         end)
+        
+        task.wait(5)
+        playAnimation()
     end,
 
     amove4 = function()
@@ -297,7 +300,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = {  }
+    amove3 = { Speed = 3, EndTime = 5 }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
