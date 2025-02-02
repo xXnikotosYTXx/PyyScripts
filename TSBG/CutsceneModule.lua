@@ -6,8 +6,8 @@ if v1 then v1()end
 local CFrameSequenceKeypoint = {}
 CFrameSequenceKeypoint.__index = CFrameSequenceKeypoint
 
-function CFrameSequenceKeypoint.new(alpha, offset)
-    return setmetatable({ Alpha = alpha, Offset = offset }, CFrameSequenceKeypoint)
+function CFrameSequenceKeypoint.new(time, offset)
+    return setmetatable({ Time = time, Offset = offset }, CFrameSequenceKeypoint)
 end
 
 -- CFrameSequence
@@ -18,9 +18,9 @@ function CFrameSequence.new()
     return setmetatable({ Keypoints = {} }, CFrameSequence)
 end
 
-function CFrameSequence:AddKeypoint(alpha, offset)
-    table.insert(self.Keypoints, CFrameSequenceKeypoint.new(alpha, offset))
-    table.sort(self.Keypoints, function(a, b) return a.Alpha < b.Alpha end)
+function CFrameSequence:AddKeypoint(time, offset)
+    table.insert(self.Keypoints, CFrameSequenceKeypoint.new(time, offset))
+    table.sort(self.Keypoints, function(a, b) return a.Time < b.Time end)
 end
 
 function CFrameSequence:GetKeypoints()
@@ -44,13 +44,13 @@ function CameraAnimator:Play(sequence, duration)
     self.Sequence = sequence
     self.Playing = true
     self.StartTime = tick()
-    self.Duration = duration or 1 -- Use 1 since alpha is normalized
-    
+    self.Duration = duration or 1
+
     task.spawn(function()
         while self.Playing do
             self.Camera.CameraType = Enum.CameraType.Scriptable
-            local elapsed = (tick() - self.StartTime) / self.Duration
-            if elapsed >= 1 then
+            local elapsed = (tick() - self.StartTime)
+            if elapsed >= self.Duration then
                 self.Camera.CFrame = self.Origin * sequence.Keypoints[#sequence.Keypoints].Offset
                 self.Playing = false
                 break
@@ -62,14 +62,14 @@ function CameraAnimator:Play(sequence, duration)
     end)
 end
 
-function CameraAnimator:Interpolate(alpha)
+function CameraAnimator:Interpolate(time)
     local keypoints = self.Sequence.Keypoints
     for i, kp in ipairs(keypoints) do
         local k1, k2 = keypoints[i], keypoints[i + 1]
         if not typeof(k1.Offset) == "CFrame" then error("Keypoint 1 offset is not CFrame! Value: " .. tostring(k1.Offset) or "unknown") end
         if not typeof(k2.Offset) == "CFrame" then error("Keypoint 2 offset is CFrame! Value: " .. tostring(k2.Offset) or "unknown") end
-        if alpha >= k1.Alpha and alpha <= k2.Alpha then
-            local t = (alpha - k1.Alpha) / (k2.Alpha - k1.Alpha)
+        if time >= k1.Time and time <= k2.Time then
+            local t = (time - k1.Time) / (k2.Time - k1.Time)
             return self.Origin * k1.Offset:Lerp(k2.Offset, t)
         end
     end
@@ -81,19 +81,3 @@ function CameraAnimator:Stop()
 end
 
 return CameraAnimator
-
--- [[Example Use]]
--- local CameraAnimator = loadstring(INSERT-HTTPGET-HERE)()
--- local CFrameSequence = CameraAnimator.CFrameSequence
---
--- local camera = workspace.CurrentCamera
--- local rootPart = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
--- local origin = rootPart and rootPart.CFrame or CFrame.new()
---
--- local sequence = CFrameSequence.new()
--- sequence:AddKeypoint(0, CFrame.new(0, 5, 10))
--- sequence:AddKeypoint(0.5, CFrame.new(10, 5, 0))
--- sequence:AddKeypoint(1, CFrame.new(0, 5, -10))
---
--- local animator = CameraAnimator.new(camera, origin)
--- animator:Play(sequence, 2) -- Play the animation in 2 seconds
