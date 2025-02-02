@@ -64,11 +64,11 @@ end
 
 function CameraAnimator:Interpolate(alpha)
     local keypoints = self.Sequence.Keypoints
-    for i = 1, #keypoints - 1 do
+    for i, kp in ipairs(keypoints) do
         local k1, k2 = keypoints[i], keypoints[i + 1]
         if alpha >= k1.Alpha and alpha <= k2.Alpha then
             local t = (alpha - k1.Alpha) / (k2.Alpha - k1.Alpha)
-            print(k1.Offset, k2.Offs)
+            print(k1.Offset, k2.Offset)
             return self.Origin * k1.Offset:Lerp(k2.Offset, t)
         end
     end
