@@ -292,8 +292,47 @@ local handlers = {
             animator:Play(seq, ufwTime)
         end)
 
+        task.spawn(function()
+            local image = Instance.new("ImageLabel")
+            image.Visible = true
+            image.BackgroundTransparency = 1
+            image.Texture = ""
+            image.AnchorPoint = Vector2.new(0.5, 0.5)
+            image.Size = UDim2.new(1, 0, 1, 0)
+            image.Position = UDim2.new(0.5, 0, 0.5, 0)
+
+            local vf = Instance.new("ViewportFrame")
+            vf.Visible = true
+            vf.BackgroundTransparency = 1
+            vf.AnchorPoint = Vector2.new(0.5, 0.5)
+            vf.Size = UDim2.new(1, 0, 1, 0)
+            vf.Position = UDim2.new(0.5, 0, 0.5, 0)
+            vf.Parent = image
+
+            local ui = Instance.new("ScreenGui")
+            ui.Enabled = false
+            ui.ClipToDeviceSafeArea = false
+            ui.IgnoreGuiInset = true
+            ui.ScreenInsets = Enum.ScreenInsets.None
+            ui.Parent = lplr.ScreenGui
+            image.Parent = ui
+
+            task.spawn(function()
+                while true do
+                    vf:ClearAllChildren()
+                    lplr.Character:Clone().Parent = vf
+                    task.wait()
+                end
+            end)
+
+            task.delay(ufwTime, ui.Destroy, ui)
+
+            task.wait(0.6)
+            ui.Enabled = true
+        end)
+
         task.wait(ufwTime)
-        playAnimation("77727115892579", {TimePosition = 10.5, Speed = 3})
+        playAnimation("77727115892579", {TimePosition = 10.5, Speed = 2.3})
     end,
 
     amove4 = function()
@@ -310,7 +349,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 3, EndTime = ufwTime }
+    amove3 = { Speed = 2.3, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
