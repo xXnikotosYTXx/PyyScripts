@@ -34,7 +34,8 @@ if katana2 then char:FindFirstChild("Sheathed"):Destroy() char:FindFirstChild("#
 if bat then char:FindFirstChild("#BATWEAPON"):Destroy() end
 
 -- Modules
-local pyymod = loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/TSBG/PyyModule.lua"))()
+local cutmod = loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/TSBG/CutsceneModule.lua"))()
+local cfseq = cutmod.CFrameSequence
 
 -- Editing names
 local plrgui:PlayerGui = lplr:FindFirstChild("PlayerGui")
@@ -134,15 +135,15 @@ local function playAnimation(id, details)
         warn("Invalid humanoid or humanoid has no Animator.")
         return
     end
-    
+
     local animation = Instance.new("Animation")
     animation.AnimationId = "rbxassetid://" .. tostring(id)
-    
+
     local animator:Animator = humanoid:FindFirstChild("Animator")
     local animationTrack = animator:LoadAnimation(animation)
 
     animationTrack:Play()
-    
+
     if details then
         if details.Priority then
             animationTrack.Priority = details.Priority
@@ -191,14 +192,14 @@ local handlers = {
         task.spawn(function()
             while loop do
                 hotbar.Enabled = false
-                
+
                 char.Humanoid.WalkSpeed = 0
                 char.Humanoid.JumpPower = 0
-                
+
                 task.wait()
             end
         end)
-        
+
         local sound1 = Instance.new("Sound")
         local sound2 = Instance.new("Sound")
         sound1.Parent = char.Head
@@ -209,7 +210,7 @@ local handlers = {
         sound2.Volume = 5
         sound1:Play()
         sound2:Play()
-        
+
         task.wait(tr.Length)
         loop = false
         sound1:Destroy()
@@ -220,78 +221,83 @@ local handlers = {
     end,
 
     move1 = function()
-        
+
     end,
 
     move2 = function()
-        
+
     end,
 
     move3 = function()
-        
+
     end,
 
     move4 = function()
         task.wait(0.5)
         local vfx = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast
-        
+
         local vfx1 = vfx:Clone()
         vfx1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
         local vfx2 = vfx:Clone()
         vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-        
+
         for _, child in pairs(vfx1:GetChildren()) do
             if child:IsA("ParticleEmitter") then
-                
+
                 child.Speed = NumberRange.new(0.5)
                 child.Color = ColorSequence.new(Color3.new(0.25, 0.3, 0.25))
                 child.Size = NumberSequence.new({
                     NumberSequenceKeypoint.new(0, 25),
                     NumberSequenceKeypoint.new(1, 50),
                 })
-                
+
                 child:Emit(4)
             end
         end
-        
+
         for _, child in pairs(vfx2:GetChildren()) do
             if child:IsA("ParticleEmitter") then
-                
+
                 child.Speed = NumberRange.new(0.5)
                 child.Color = ColorSequence.new(Color3.new(1, 0, 0))
                 child.Size = NumberSequence.new({
-                    NumberSequenceKeypoint.new(0, 15),
-                    NumberSequenceKeypoint.new(1, 25),
+                    NumberSequenceKeypoint.new(0, 10),
+                    NumberSequenceKeypoint.new(1, 20),
                 })
-                
+
                 child:Emit(6)
             end
         end
     end,
 
     amove1 = function()
-        
+
     end,
-    
+
     amove2 = function()
-        
+
     end,
 
     amove3 = function()
         task.spawn(function()
-            pyymod.AnimateCamera(15, {
-                {Time = 0, Offset = CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
-                {Time = 0.15, Offset = CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180))},
-                {Time = 1, Offset = CFrame.new(0, 1, -7.5)},
-            })
+            local att = Instance.new("Attachment")
+            att.Parent = char.HumanoidRootPart
+
+            local seq = cfseq.new()
+            seq:AddKeypoint(0, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180)))
+            seq:AddKeypoint(0.15, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180)))
+            seq:AddKeypoint(1, CFrame.new(0, 1, -5))
+
+            local animator = cutmod.new(workspace.CurrentCamera)
+            animator:Play(seq, ufwTime)
         end)
-        
+
         task.wait(ufwTime)
         playAnimation("77727115892579", {TimePosition = 10.5, Speed = 3})
     end,
 
     amove4 = function()
-        
+
     end,
 }
 

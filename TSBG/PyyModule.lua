@@ -154,67 +154,6 @@ function module.MangaText(text1: string, text2: string?, lifetime: number?)
     end)()
 end
 
-local function resetCam()
-    workspace.CurrentCamera:remove()
-	wait(.1)
-	repeat wait() until lplr.Character ~= nil
-	workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA('Humanoid')
-	workspace.CurrentCamera.CameraType = "Custom"
-	lplr.CameraMinZoomDistance = 0.5
-	lplr.CameraMaxZoomDistance = 400
-	lplr.CameraMode = "Classic"
-	lplr.Character.Head.Anchored = false
-end
-
-function module.AnimateCamera(lifetime: number, keyframes: CFrameSequence)
-    local ts = game:GetService("TweenService")
-    local camera = workspace.CurrentCamera
-    local char = lplr.Character
-
-    -- Reset camera
-    resetCam()
-
-    workspace.CurrentCamera:remove()
-	wait(.1)
-	repeat wait() until lplr.Character ~= nil
-	workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA('Humanoid')
-	workspace.CurrentCamera.CameraType = "Scriptable"
-	lplr.CameraMinZoomDistance = 0.5
-	lplr.CameraMaxZoomDistance = 400
-	lplr.CameraMode = "Classic"
-	lplr.Character.Head.Anchored = false
-	
-	local att = Instance.new("Attachment")
-	att.Parent = char.HumanoidRootPart
-
-    local origin = att.WorldCFrame
-
-    game.Debris:AddItem(origin, 60)
-
-    local spentLifetime = 0
-    for _, v in pairs(keyframes) do
-        local alpha = v.Time  -- The position in the lifetime (0 to 1)
-        local offset = v.Offset
-
-        -- Calculate the actual time for this keyframe based on alpha
-        local targetTime = alpha * lifetime
-
-        -- Duration for the transition based on the position
-        local tweenTime = targetTime - spentLifetime
-
-        if tweenTime > 0 then
-            local tween = ts:Create(camera, TweenInfo.new(tweenTime), {CFrame = origin * offset})
-            tween:Play()
-
-            tween.Completed:Wait()
-        end
-
-        spentLifetime = targetTime
-    end
-
-    resetCam()
-end
-
 
 
 
