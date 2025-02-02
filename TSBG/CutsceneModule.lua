@@ -68,6 +68,7 @@ function CameraAnimator:Interpolate(alpha)
         local k1, k2 = keypoints[i], keypoints[i + 1]
         if alpha >= k1.Alpha and alpha <= k2.Alpha then
             local t = (alpha - k1.Alpha) / (k2.Alpha - k1.Alpha)
+            print(k1.Offset, k2.Offs)
             return self.Origin * k1.Offset:Lerp(k2.Offset, t)
         end
     end
