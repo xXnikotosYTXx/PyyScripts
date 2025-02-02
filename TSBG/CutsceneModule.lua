@@ -66,6 +66,8 @@ function CameraAnimator:Interpolate(alpha)
     local keypoints = self.Sequence.Keypoints
     for i, kp in ipairs(keypoints) do
         local k1, k2 = keypoints[i], keypoints[i + 1]
+        if not k1 then error("Keypoint 1 is missing!") end
+        if not k2 then error("Keypoint 2 is missing! Value: " .. k2.Offset)
         if alpha >= k1.Alpha and alpha <= k2.Alpha then
             local t = (alpha - k1.Alpha) / (k2.Alpha - k1.Alpha)
             print(k1.Offset, k2.Offset)
