@@ -298,7 +298,7 @@ local handlers = {
             seq:AddKeypoint(0.15, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180)))
             seq:AddKeypoint(1, CFrame.new(0, 1, -5))
 
-            local animator = cutmod.new(workspace.CurrentCamera)
+            local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFramr)
             animator:Play(seq, ufwTime)
             task.wait(ufwTime)
             workspace.CurrentCamera:remove()
@@ -334,7 +334,7 @@ local handlers = {
             ui.ClipToDeviceSafeArea = false
             ui.IgnoreGuiInset = true
             ui.ScreenInsets = Enum.ScreenInsets.None
-            ui.Parent = lplr.ScreenGui
+            ui.Parent = lplr.PlayerGui
             image.Parent = ui
 
             task.spawn(function()
