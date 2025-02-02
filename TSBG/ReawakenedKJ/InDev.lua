@@ -124,7 +124,7 @@ local newAnimations = {
 -- Code/functions to use in the handlers
 
 -- some variables for handlers
-local ufwTime = 10
+local ufwTime = 7.5
 
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
@@ -294,8 +294,9 @@ local handlers = {
             att.Parent = char.HumanoidRootPart
 
             local seq = cfseq.new()
-            seq:AddKeypoint(0, CFrame.new(0, 1, -2) * CFrame.fromOrientation(0, math.rad(180), 0))
-            seq:AddKeypoint(0.25, CFrame.new(0, 1, -2) * CFrame.fromOrientation(0, math.rad(180), 0))
+            seq:AddKeypoint(0, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
+            seq:AddKeypoint(0.5, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
+            seq:
             seq:AddKeypoint(1, CFrame.new(0, 1, 5))
 
             local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFrame)
