@@ -296,7 +296,7 @@ local handlers = {
             local seq = cfseq.new()
             seq:AddKeypoint(0, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
             seq:AddKeypoint(0.5, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
-            seq:
+            seq:AddKeypoint(0.52, CFrame.new(7.5, 1, -3.5) * CFrame.fromOrienya)
             seq:AddKeypoint(1, CFrame.new(0, 1, 5))
 
             local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFrame)
