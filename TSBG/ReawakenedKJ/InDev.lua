@@ -300,7 +300,9 @@ local handlers = {
             seq:AddKeypoint(0.65, CFrame.new(7.5, 1, -3.5) * CFrame.fromOrientation(0, math.rad(-90), 0))
             seq:AddKeypoint(0.66, CFrame.new(0, -2.5, 5) * CFrame.fromOrientation(0, math.rad(180), math.rad(15)))
             seq:AddKeypoint(0.75, CFrame.new(0, -2.5, 5) * CFrame.fromOrientation(0, math.rad(180), math.rad(15)))
-            seq:AddKeypoint(0.76, CFrame.new(7.5, 1, 0) * CFrame.fromOrientation(0, math.rad(-90)))
+            seq:AddKeypoint(0.76, CFrame.new(7.5, 1, 0) * CFrame.fromOrientation(0, math.rad(-90), 0))
+            seq:AddKeypoint(0.85, CFrame.new(7.5, 1, 0) * CFrame.fromOrientation(0, math.rad(-90), 0))
+            seq:AddKeypoint(0.86, CFrame)
             seq:AddKeypoint(1, CFrame.new(0, 1, 5))
 
             local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFrame)
