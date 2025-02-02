@@ -294,11 +294,11 @@ local handlers = {
             att.Parent = char.HumanoidRootPart
 
             local seq = cfseq.new()
-            seq:AddKeypoint(0, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180)))
-            seq:AddKeypoint(0.15, CFrame.new(0, 1, 0.75) * CFrame.fromOrientation(0, 0, math.rad(180)))
-            seq:AddKeypoint(1, CFrame.new(0, 1, -5))
+            seq:AddKeypoint(0, CFrame.new(0, 1, -0.75) * CFrame.fromOrientation(0, math.rad(180), 0))
+            seq:AddKeypoint(0.25, CFrame.new(0, 1, -0.75) * CFrame.fromOrientation(0, math.rad(180), 0))
+            seq:AddKeypoint(1, CFrame.new(0, 1, 5))
 
-            local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFramr)
+            local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFrame)
             animator:Play(seq, ufwTime)
             task.wait(ufwTime)
             workspace.CurrentCamera:remove()
