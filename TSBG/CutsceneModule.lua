@@ -48,6 +48,7 @@ function CameraAnimator:Play(sequence, duration)
     
     task.spawn(function()
         while self.Playing do
+            self.Camera.CameraType = Enum.CameraType.Scriptable
             local elapsed = (tick() - self.StartTime) / self.Duration
             if elapsed >= 1 then
                 self.Camera.CFrame = self.Origin * sequence.Keypoints[#sequence.Keypoints].Offset

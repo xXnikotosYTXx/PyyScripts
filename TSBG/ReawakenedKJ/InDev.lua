@@ -280,6 +280,16 @@ local handlers = {
 
     amove3 = function()
         task.spawn(function()
+            workspace.CurrentCamera:remove()
+            wait()
+            repeat wait() until lplr.Character
+            workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
+            workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+            lplr.CameraMaxZoomDistance = 400
+            lplr.CameraMinZoomDistance = 0.5
+            lplr.CameraMode = Enum.CameraMode.Classic
+            lplr.Character.Head.Anchored = false
+            
             local att = Instance.new("Attachment")
             att.Parent = char.HumanoidRootPart
 
@@ -290,6 +300,16 @@ local handlers = {
 
             local animator = cutmod.new(workspace.CurrentCamera)
             animator:Play(seq, ufwTime)
+            task.wait(ufwTime)
+            workspace.CurrentCamera:remove()
+            wait()
+            repeat wait() until lplr.Character
+            workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
+            workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+            lplr.CameraMaxZoomDistance = 400
+            lplr.CameraMinZoomDistance = 0.5
+            lplr.CameraMode = Enum.CameraMode.Classic
+            lplr.Character.Head.Anchored = false
         end)
 
         task.spawn(function()
