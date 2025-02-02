@@ -70,7 +70,8 @@ function CameraAnimator:Interpolate(alpha)
         if not k2.Offset then error("Keypoint 2 offset is missing! Value: " .. k2.Offset) end
         if alpha >= k1.Alpha and alpha <= k2.Alpha then
             local t = (alpha - k1.Alpha) / (k2.Alpha - k1.Alpha)
-            print(k1.Offset, k2.Offset)
+            print("K1 Offset: " .. tostring(k1.Offset))
+            print("K2 Offset: " .. tostring(k2.Offset))
             return self.Origin * k1.Offset:Lerp(k2.Offset, t)
         end
     end
