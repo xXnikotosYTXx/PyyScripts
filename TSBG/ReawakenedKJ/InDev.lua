@@ -124,7 +124,7 @@ local newAnimations = {
 -- Code/functions to use in the handlers
 
 -- some variables for handlers
-local ufwTime = 9.3
+local ufwTime = 5.6
 
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
@@ -280,28 +280,6 @@ local handlers = {
 
     amove3 = function()
         task.spawn(function()
-            workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
-            if false then return end
-            
-            local att = Instance.new("Attachment")
-            att.Parent = char.HumanoidRootPart
-
-            local seq = cfseq.new()
-            seq:AddKeypoint(0, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
-            seq:AddKeypoint(2.1, CFrame.new(0, 1, -2.75) * CFrame.fromOrientation(0, math.rad(180), 0))
-            seq:AddKeypoint(2.2, CFrame.new(7.5, 1, -3.5) * CFrame.fromOrientation(0, math.rad(-90), 0))
-            seq:AddKeypoint(4.2, CFrame.new(7.5, 1, -3.5) * CFrame.fromOrientation(0, math.rad(-90), 0))
-            seq:AddKeypoint(4.3, CFrame.new(0, -2.5, 5) * CFrame.fromOrientation(0, math.rad(180), math.rad(15)))
-            seq:AddKeypoint(5.3, CFrame.new(0, -2.5, 5) * CFrame.fromOrientation(0, math.rad(180), math.rad(15)))
-            seq:AddKeypoint(5.4, CFrame.new(-0.5, 2.5, 0.75) * CFrame.fromOrientation(math.rad(-15), math.rad(180), 0))
-            seq:AddKeypoint(6.1, CFrame.new(-0.5, 2.5, 0.75) * CFrame.fromOrientation(math.rad(-15), math.rad(180), 0))
-            seq:AddKeypoint(6.2, CFrame.new(7.5, 1, 0) * CFrame.fromOrientation(0, math.rad(-90), 0))
-            seq:AddKeypoint(9.2, CFrame.new(7.5, 1, 0) * CFrame.fromOrientation(0, math.rad(-90), 0))
-            seq:AddKeypoint(9.3, CFrame.new(0, 1, -7.5))
-
-            local animator = cutmod.new(workspace.CurrentCamera, att.WorldCFrame)
-            animator:Play(seq, ufwTime)
-            task.wait(ufwTime)
             workspace.CurrentCamera:remove()
             wait()
             repeat wait() until lplr.Character
@@ -314,6 +292,7 @@ local handlers = {
         end)
 
         task.spawn(function()
+            task.wait(0.2)
             local image = Instance.new("ImageLabel")
             image.Visible = true
             image.BackgroundTransparency = 1
@@ -331,7 +310,7 @@ local handlers = {
             vf.Parent = image
 
             local ui = Instance.new("ScreenGui")
-            ui.Enabled = false
+            ui.Enabled = true
             ui.ClipToDeviceSafeArea = false
             ui.IgnoreGuiInset = true
             ui.ScreenInsets = Enum.ScreenInsets.None
@@ -346,10 +325,8 @@ local handlers = {
                 end
             end)
 
-            task.delay(ufwTime, ui.Destroy, ui)
-
-            task.wait(2)
-            ui.Enabled = true
+            task.wait(5.4)
+            ui:Destroy()
         end)
 
         task.wait(ufwTime)
@@ -371,7 +348,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 3.57, EndTime = ufwTime }
+    amove3 = { Speed = 3.47, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
