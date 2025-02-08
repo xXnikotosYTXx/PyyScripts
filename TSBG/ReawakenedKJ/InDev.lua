@@ -311,7 +311,6 @@ local handlers = {
 
             local ui = Instance.new("ScreenGui")
             ui.Enabled = true
-            ui.ClipToDeviceSafeArea = false
             ui.IgnoreGuiInset = true
             ui.ScreenInsets = Enum.ScreenInsets.None
             ui.Parent = lplr.PlayerGui
