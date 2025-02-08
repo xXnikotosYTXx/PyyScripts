@@ -59,6 +59,7 @@ function CameraAnimator:Play(sequence, duration)
             self.Camera.CFrame = self:Interpolate(elapsed)
             task.wait()
         end
+        self.Camera.CameraType = Enum.CameraType.Custom
     end)
 end
 
@@ -67,7 +68,7 @@ function CameraAnimator:Interpolate(time)
     for i, kp in ipairs(keypoints) do
         local k1, k2 = keypoints[i], keypoints[i + 1]
         if not typeof(k1.Offset) == "CFrame" then error("Keypoint 1 offset is not CFrame! Value: " .. tostring(k1.Offset) or "unknown") end
-        if not typeof(k2.Offset) == "CFrame" then error("Keypoint 2 offset is CFrame! Value: " .. tostring(k2.Offset) or "unknown") end
+        if not typeof(k2.Offset) == "CFrame" then error("Keypoint 2 offset is not CFrame! Value: " .. tostring(k2.Offset) or "unknown") end
         if time >= k1.Time and time <= k2.Time then
             local t = (time - k1.Time) / (k2.Time - k1.Time)
             return self.Origin * k1.Offset:Lerp(k2.Offset, t)
