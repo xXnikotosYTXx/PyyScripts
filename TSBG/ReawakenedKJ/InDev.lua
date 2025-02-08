@@ -328,7 +328,7 @@ local handlers = {
             ui:Destroy()
         end)
 
-        tr.Ended:Wait()
+        task.wait(ufwTime)
         playAnimation("77727115892579", {TimePosition = 25.5, Speed = 1})
     end,
 
