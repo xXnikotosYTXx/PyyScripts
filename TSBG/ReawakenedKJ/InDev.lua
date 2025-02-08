@@ -280,15 +280,8 @@ local handlers = {
 
     amove3 = function()
         task.spawn(function()
-            workspace.CurrentCamera:remove()
-            wait()
-            repeat wait() until lplr.Character
-            workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
             workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
-            lplr.CameraMaxZoomDistance = 400
-            lplr.CameraMinZoomDistance = 0.5
-            lplr.CameraMode = Enum.CameraMode.Classic
-            lplr.Character.Head.Anchored = false
+            if false then return end
             
             local att = Instance.new("Attachment")
             att.Parent = char.HumanoidRootPart
@@ -378,7 +371,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 1.5, EndTime = ufwTime }
+    amove3 = { Speed = 3, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
