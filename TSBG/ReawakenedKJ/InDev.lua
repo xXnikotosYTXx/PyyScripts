@@ -347,7 +347,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 3.47, EndTime = ufwTime }
+    amove3 = { Speed = 3, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
