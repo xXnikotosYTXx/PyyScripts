@@ -328,9 +328,8 @@ local handlers = {
             ui:Destroy()
         end)
 
-        task.wait(ufwTime)
-        tr:Stop()
-        playAnimation("77727115892579", {TimePosition = 27, Speed = 1.5})
+        tr.Ended:Wait()
+        playAnimation("77727115892579", {TimePosition = 25.5, Speed = 1})
     end,
 
     amove4 = function()
@@ -347,7 +346,7 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 3, EndTime = ufwTime }
+    amove3 = { Speed = 2, EndTime = ufwTime }
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
