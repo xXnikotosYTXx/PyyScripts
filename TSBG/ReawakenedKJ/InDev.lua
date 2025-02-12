@@ -333,7 +333,7 @@ local handlers = {
     end,
 
     amove4 = function()
-
+        print("")
     end,
 }
 
