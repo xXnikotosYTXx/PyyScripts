@@ -1,13 +1,19 @@
 -- LICENSE.md
 print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/LICENSE.md"))
 
+local function notif(msg)
+    game:GetService("")
+end
+
 -- Premium Check
 local verified = {
     "oioioibaaka828828",
 }
 if not table.find(verified, game.Players.LocalPlayer.Name) then
+
 httpserv = game:GetService"HttpService"
 local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
+repeat task.wait(5) until game:HttpGet(keypoint)
 local data = httpserv:JSONDecode(game:HttpGet(keypoint))
 local isValid = false
 for _, v in pairs(data) do
