@@ -2,7 +2,10 @@
 print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/LICENSE.md"))
 
 local function notif(msg)
-    game:GetService("")
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "Reawakened KJ",
+        Text = msg
+    })
 end
 
 -- Premium Check
@@ -10,7 +13,7 @@ local verified = {
     "oioioibaaka828828",
 }
 if not table.find(verified, game.Players.LocalPlayer.Name) then
-
+notif("Premium checking, may take a while...")
 httpserv = game:GetService"HttpService"
 local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
 repeat task.wait(5) until game:HttpGet(keypoint)
