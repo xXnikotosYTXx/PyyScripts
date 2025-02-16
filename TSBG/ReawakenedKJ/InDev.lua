@@ -352,11 +352,11 @@ local handlers = {
                 end
             end)
 
-            task.wait(oldTrack.Length - 0.6)
+            task.wait(oldTrack.Length - 1)
             ui:Destroy()
         end)
 
-        task.wait(oldTrack.Length - 0.6)
+        task.wait(oldTrack.Length - 1)
         playAnimation("77727115892579", {Weight = 10, TimePosition = 25.5, Speed = 1})
     end,
 
