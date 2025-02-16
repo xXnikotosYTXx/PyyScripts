@@ -164,7 +164,25 @@ local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"
 local function awakeningVFXBatch2(duration:number)
     for _, v in pairs(ivfx1:GetDescendants()) do
         if v:IsA("ParticleEmitter") then
-            v.Enabl
+            v.Enabled = true
+        end
+    end
+    ivfx2.Enabled = true
+    ivfx3.Enabled = true
+    ivfx4.Enabled = true
+    ivfx5.Enabled = true
+    
+    task.delay(duration, function()
+        for _, v in pairs(ivfx1:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v.Enabled = true
+            end
+        end
+    ivfx2.Enabled = true
+    ivfx3.Enabled = true
+    ivfx4.Enabled = true
+    ivfx5.Enabled = true
+    end)
 end
 
 local function chat(msg: string)
