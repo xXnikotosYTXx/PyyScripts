@@ -135,6 +135,27 @@ local newAnimations = {
 -- some variables for handlers
 local ufwTime = 5.6
 
+local avfx1 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"]["EmitBatch1"]:Clone() avfx1.Parent = char.HumanoidRootPart
+local avfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"]["EmitBatch2"]:Clone() avfx2.Parent = char.HumanoidRootPart
+local avfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...Emit"]["EmitBatch3"]:Clone() avfx3.Parent = char.HumanoidRootPart
+local function awakeningVFXBatch1()
+    for _, v in pairs(avfx1:GetDescendants()) do
+        if v:IsA("ParticleEmitter") then
+            v:Emit(v:GetAttribute("EmitCount"))
+        end
+    end
+    for _, v in pairs(avfx2:GetDescendants()) do
+        if v:IsA("ParticleEmitter") then
+            v:Emit(v:GetAttribute("EmitCount"))
+        end
+    end
+    for _, v in pairs(avfx3:GetDescendants()) do
+        if v:IsA("ParticleEmitter") then
+            v:Emit(v:GetAttribute("EmitCount"))
+        end
+    end
+end
+
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 end
@@ -197,6 +218,7 @@ local handlers = {
     rdash = function() end,
 
     awk = function(tr)
+        awakeningVFXBatch1()
         local loop = true
         task.spawn(function()
             while loop do
