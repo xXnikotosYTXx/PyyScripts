@@ -239,8 +239,13 @@ local handlers = {
 
     move3 = function()
         local hrp = char.HumanoidRootPart
-        task.wait(0.6)
-        hrp.CFrame = hrp.CFrame * CFrame.new(0, -2, 0)
+        task.wait(0.4)
+        local starttime = tick()
+        local lowtime = 0.4
+        while tick() <= starttime + lowtime do
+            hrp.CFrame = hrp.CFrame * CFrame.new(0, -2, 0)
+            task.wait()
+        end
     end,
 
     move4 = function()
