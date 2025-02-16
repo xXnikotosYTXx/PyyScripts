@@ -239,7 +239,7 @@ local handlers = {
 
     move3 = function()
         local hrp = char.HumanoidRootPart
-        task.wait(0.4)
+        task.wait(0.26)
         local starttime = tick()
         local lowtime = 0.5
         local startcf = hrp.CFrame
