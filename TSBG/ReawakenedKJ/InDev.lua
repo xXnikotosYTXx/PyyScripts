@@ -326,11 +326,10 @@ local handlers = {
             image.Parent = ui
 
             task.spawn(function()
-                while true do
-                    vf:ClearAllChildren()
-                    lplr.Character:Clone().Parent = vf
-                    task.wait()
-                end
+                local clone = lplr.Character:Clone()
+                clone.Parent = vf
+                local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
+                cl
             end)
 
             task.wait(5.4)
