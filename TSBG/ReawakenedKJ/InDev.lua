@@ -238,7 +238,7 @@ local handlers = {
     end,
 
     move3 = function()
-
+        local rh
     end,
 
     move4 = function()
@@ -363,7 +363,7 @@ local animDt = {
     m2 = { Speed = 1.3 },
     m3 = { Speed = 1.3 },
     m4 = { Speed = 1.3 },
-    fdash = { TimePosition = 6.55 },
+    fdash = { TimePosition = 6.55, Speed = 1.5 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
