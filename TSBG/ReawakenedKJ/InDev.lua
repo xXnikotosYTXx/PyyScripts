@@ -289,15 +289,9 @@ local handlers = {
 
     amove3 = function(newTrack, oldTrack)
         task.spawn(function()
-            workspace.CurrentCamera:remove()
-            wait()
-            repeat wait() until lplr.Character
-            workspace.CurrentCamera.CameraSubject = lplr.Character:FindFirstChildWhichIsA("Humanoid")
             workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
-            lplr.CameraMaxZoomDistance = 400
-            lplr.CameraMinZoomDistance = 0.5
-            lplr.CameraMode = Enum.CameraMode.Classic
-            lplr.Character.Head.Anchored = false
+            local CameraAnimator = cutmod.new(workspace.CurrentCamera, char.HumanoidRootPart)
+            
         end)
 
         task.spawn(function()
@@ -327,22 +321,20 @@ local handlers = {
             image.Parent = ui
 
             task.spawn(function()
-                local hum = lplr.Character:FindFirstChildWhichIsA("Humanoid")
-                local clone = lplr.Character:Clone()
-                clone.Parent = vf
-                local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
-                for _, v in pairs(cloneHumanoid:GetPlayingAnimationTracks()) do
-                    v:Stop()
-                end
-                for _, v in pairs(hum:GetPlayingAnimationTracks()) do
-                    local animation = v.Animation
-                    local cloneTrack = hum:LoadAnimation(animation)
-                    cloneTrack.TimePosition = v.TimePosition
-                    cloneTrack:Play(0.100000001, v.WeightTarget, v.Speed)
+                while true do
+                    vf:ClearAllChildren()
+                    local newChar = Instance.new("Model")
+                    newChar.Parent = vf
+                    for _, v in pairs(char:GetChildren()) do
+                        if not v:IsA("BaseScript") then
+                            v:Clone().Parent = newChar
+                        end
+                    end
+                    task.wait()
                 end
             end)
 
-            task.wait(5.4)
+            task.wait(oldTrack.Length)
             ui:Destroy()
         end)
 
