@@ -287,7 +287,7 @@ local handlers = {
 
     end,
 
-    amove3 = function()
+    amove3 = function(newTrack, oldTrack)
         task.spawn(function()
             workspace.CurrentCamera:remove()
             wait()
@@ -346,7 +346,7 @@ local handlers = {
             ui:Destroy()
         end)
 
-        task.wait(ufwTime)
+        task.wait(oldTrack.Length)
         playAnimation("77727115892579", {TimePosition = 25.5, Speed = 1})
     end,
 
@@ -376,7 +376,7 @@ for k, v in pairs(oldAnimations) do
             local trdt = animDt[k] or { Weight = 10 }
             if not trdt["Weight"] then trdt.Weight = 10 end -- Avoid bad animation
             local newtr = playAnimation(newAnimations[k], trdt)
-            task.spawn(function() handlers[k](newtr) end)
+            task.spawn(function() handlers[k](newtr, tr) end)
 
             if k == "awk" then
                 task.wait(1.25) -- Modify for your character's ultimate animation length
