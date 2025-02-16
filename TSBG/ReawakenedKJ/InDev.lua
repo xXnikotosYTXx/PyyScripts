@@ -159,8 +159,8 @@ end
 local ivfx1 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["EnableBatch2"]:Clone() ivfx.Parent = char.HumanoidRootPart
 local ivfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD1"]:Clone() ivfx.Parent = char.HumanoidRootPart
 local ivfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD2"]:Clone() ivfx.Parent = char.HumanoidRootPart
-local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx.Parent = char.HumanoidRootPart
-local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx.Parent = char.HumanoidRootPart
+local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx.Parent = char["Left Arm"]
+local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx.Parent = char["Right Arm"]
 local function awakeningVFXBatch2(duration:number)
     for _, v in pairs(ivfx1:GetDescendants()) do
         if v:IsA("ParticleEmitter") then
@@ -175,13 +175,13 @@ local function awakeningVFXBatch2(duration:number)
     task.delay(duration, function()
         for _, v in pairs(ivfx1:GetDescendants()) do
             if v:IsA("ParticleEmitter") then
-                v.Enabled = true
+                v.Enabled = false
             end
         end
-    ivfx2.Enabled = true
-    ivfx3.Enabled = true
-    ivfx4.Enabled = true
-    ivfx5.Enabled = true
+        ivfx2.Enabled = false
+        ivfx3.Enabled = false
+        ivfx4.Enabled = false
+        ivfx5.Enabled = false
     end)
 end
 
