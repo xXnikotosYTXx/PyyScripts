@@ -183,7 +183,7 @@ local function awakeningVFXBatch2(duration:number)
         ivfx3.Enabled = false
         ivfx4.Enabled = false
         ivfx5.Enabled = false
-        endvfx:En
+        endvfx:Emit(5)
     end)
 end
 
