@@ -156,12 +156,12 @@ local function awakeningVFXBatch1()
     end
 end
 
-local ivfx1 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["EnableBatch2"]:Clone() ivfx.Parent = char.HumanoidRootPart
-local ivfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD1"]:Clone() ivfx.Parent = char.HumanoidRootPart
-local ivfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD2"]:Clone() ivfx.Parent = char.HumanoidRootPart
-local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx.Parent = char["Left Arm"]
-local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx.Parent = char["Right Arm"]
-local endvfx = game.ReplicatedStorage.Resources.KJEffects["stoic bomb boom "]["THEACTUALBOOM"]:Clone() endvfx.Parent = char.HumanoidRootPart
+local ivfx1 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["EnableBatch2"]:Clone() ivfx1.Parent = char.HumanoidRootPart
+local ivfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD1"]:Clone() ivfx2.Parent = char.HumanoidRootPart
+local ivfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD2"]:Clone() ivfx3.Parent = char.HumanoidRootPart
+local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx4.Parent = char["Left Arm"]
+local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx5.Parent = char["Right Arm"]
+local endvfx = game.ReplicatedStorage.Resources.KJEffects["stoic bomb boom entrance"]["THEACTUALBOOM"]:Clone() endvfx.Parent = char.HumanoidRootPart
 local function awakeningVFXBatch2(duration:number)
     for _, v in pairs(ivfx1:GetDescendants()) do
         if v:IsA("ParticleEmitter") then
@@ -250,6 +250,7 @@ local handlers = {
 
     awk = function(tr)
         awakeningVFXBatch1()
+        task.delay(7.8, awakeningVFXBatch2)
         local loop = true
         task.spawn(function()
             while loop do
