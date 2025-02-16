@@ -242,8 +242,9 @@ local handlers = {
         task.wait(0.4)
         local starttime = tick()
         local lowtime = 0.4
+        local startcf = rawge
         while tick() <= starttime + lowtime do
-            hrp.CFrame = hrp.CFrame * CFrame.new(0, -2, 0)
+            hrp.CFrame = startcf * CFrame.new(0, -2, 0)
             task.wait()
         end
     end,
