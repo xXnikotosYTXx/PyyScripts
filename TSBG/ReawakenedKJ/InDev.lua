@@ -279,8 +279,8 @@ local handlers = {
         end
     end,
 
-    amove1 = function()
-
+    amove1 = function(oldTrack)
+        
     end,
 
     amove2 = function()
