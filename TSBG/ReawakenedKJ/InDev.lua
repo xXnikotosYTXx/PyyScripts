@@ -330,7 +330,7 @@ local handlers = {
                 local clone = lplr.Character:Clone()
                 clone.Parent = vf
                 local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
-                for _, v in pairs(hum:Getapl)
+                for _, v in pairs(hum:GetPlayingAnimationTracks()) 
             end)
 
             task.wait(5.4)
