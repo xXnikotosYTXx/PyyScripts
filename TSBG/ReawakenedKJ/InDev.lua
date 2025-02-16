@@ -161,7 +161,7 @@ local ivfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD1"
 local ivfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD2"]:Clone() ivfx3.Parent = char.HumanoidRootPart
 local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx4.Parent = char["Left Arm"]
 local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx5.Parent = char["Right Arm"]
-local endvfx = game.ReplicatedStorage.Resources.KJEffects["stoic bomb boom "]["THEACTUALBOOM"]:Clone() endvfx.Parent = char.HumanoidRootPart
+local endvfx = game.ReplicatedStorage.Resources.KJEffects["stoic bomb boom entrance"]["THEACTUALBOOM"]:Clone() endvfx.Parent = char.HumanoidRootPart
 local function awakeningVFXBatch2(duration:number)
     for _, v in pairs(ivfx1:GetDescendants()) do
         if v:IsA("ParticleEmitter") then
