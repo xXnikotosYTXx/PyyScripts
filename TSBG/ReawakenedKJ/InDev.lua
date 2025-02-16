@@ -333,6 +333,7 @@ local handlers = {
                 local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
                 for _, v in pairs(cloneHumanoid:GetPlayingAnimationTracks()) do
                     v:Stop()
+                end
                 for _, v in pairs(hum:GetPlayingAnimationTracks()) do
                     local animation = v.Animation
                     local cloneTrack = hum:LoadAnimation(animation)
