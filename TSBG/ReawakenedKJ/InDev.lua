@@ -76,9 +76,9 @@ SetMoveNames()
 -- Awakening move names
 local function SetAwkNames()
     b1.Text = "20 Series"
-    b2.Text = "Calm Ordnance"
+    b2.Text = "Palm of Infinity"
     b3.Text = "Infinite Modulations"
-    b4.Text = "Quintuplet Solstices"
+    b4.Text = "Calm Ordnance"
 end
 
 -- Animations
