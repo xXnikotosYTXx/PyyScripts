@@ -326,10 +326,11 @@ local handlers = {
             image.Parent = ui
 
             task.spawn(function()
+                local hum = lplr.Character:FindFirstChildWhichIsA("Humanoid")
                 local clone = lplr.Character:Clone()
                 clone.Parent = vf
                 local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
-                cl
+                for _, v in pairs(hum:Getapl)
             end)
 
             task.wait(5.4)
