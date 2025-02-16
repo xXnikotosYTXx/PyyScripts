@@ -91,7 +91,7 @@ local oldAnimations = {
     ds = "10470104242", -- Actually, DON'T replace this
     up = "10503381238", -- Actually, DON'T replace this
     wc = "15955393872", -- Replace with the old wall combo animation ID
-    fdash = "18715858574", -- Actually, DON'T replace this
+    fdash = "10479335397", -- Actually, DON'T replace this
     bdash = "...", -- Actually, DON'T replace this
     ldash = "10480796021", -- Actually, DON'T replace this
     rdash = "10480793962", -- Actually, DON'T replace this
@@ -239,12 +239,12 @@ local handlers = {
 
     move3 = function()
         local hrp = char.HumanoidRootPart
-        task.wait(0.2)
+        task.wait(0.135)
         local starttime = tick()
         local lowtime = 0.5
         local startcf = hrp.CFrame
         while tick() <= starttime + lowtime do
-            hrp.CFrame = startcf * CFrame.new(0, -2, 0)
+            hrp.CFrame = startcf * CFrame.new(0, -1.5, 0)
             task.wait()
         end
     end,
@@ -313,7 +313,7 @@ local handlers = {
         end)
 
         task.spawn(function()
-            task.wait(0.2)
+            task.wait(0.5)
             local image = Instance.new("ImageLabel")
             image.Visible = true
             image.BackgroundTransparency = 1
@@ -352,12 +352,12 @@ local handlers = {
                 end
             end)
 
-            task.wait(oldTrack.Length - 1)
+            task.wait(oldTrack.Length - 2.64)
             ui:Destroy()
         end)
 
-        task.wait(oldTrack.Length - 1)
-        playAnimation("77727115892579", {Weight = 10, TimePosition = 25.5, Speed = 1})
+        task.wait(oldTrack.Length - 2.64)
+        playAnimation("77727115892579", {Weight = 10, TimePosition = 25.5, Speed = 1, EndTime = 2.25})
     end,
 
     amove4 = function()
