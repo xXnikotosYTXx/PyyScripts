@@ -291,7 +291,7 @@ local handlers = {
         task.spawn(function()
             workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
             local CameraAnimator = cutmod.new(workspace.CurrentCamera, char.HumanoidRootPart)
-            
+            local seq = cfseq.new()
         end)
 
         task.spawn(function()
