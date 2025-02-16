@@ -157,6 +157,10 @@ local function awakeningVFXBatch1()
 end
 
 local ivfx1 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["EnableBatch2"]:Clone() ivfx.Parent = char.HumanoidRootPart
+local ivfx2 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD1"]:Clone() ivfx.Parent = char.HumanoidRootPart
+local ivfx3 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD2"]:Clone() ivfx.Parent = char.HumanoidRootPart
+local ivfx4 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD3"]:Clone() ivfx.Parent = char.HumanoidRootPart
+local ivfx5 = game.ReplicatedStorage.Resources.KJEffects["fine...1OG"]["REDDDD4"]:Clone() ivfx.Parent = char.HumanoidRootPart
 
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
