@@ -290,7 +290,7 @@ local handlers = {
         game.Players.LocalPlayer.Character.Head.Anchored = false
         
         task.wait(oldTrack.Length - 0.87)
-        playAnimation(140164642047188, { Weight = 10, TimePositi})
+        playAnimation(140164642047188, { Weight = 10, TimePosition = 6.55})
     end,
 
     amove2 = function()
