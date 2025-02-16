@@ -334,11 +334,11 @@ local handlers = {
                 end
             end)
 
-            task.wait(oldTrack.Length)
+            task.wait(oldTrack.Length - 0.6)
             ui:Destroy()
         end)
 
-        task.wait(oldTrack.Length)
+        task.wait(oldTrack.Length - 0.6)
         playAnimation("77727115892579", {TimePosition = 25.5, Speed = 1})
     end,
 
