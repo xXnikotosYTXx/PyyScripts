@@ -241,8 +241,8 @@ local handlers = {
         local hrp = char.HumanoidRootPart
         task.wait(0.4)
         local starttime = tick()
-        local lowtime = 0.4
-        local startcf = rawge
+        local lowtime = 0.5
+        local startcf = hrp.CFrame
         while tick() <= starttime + lowtime do
             hrp.CFrame = startcf * CFrame.new(0, -2, 0)
             task.wait()
