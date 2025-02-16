@@ -115,7 +115,7 @@ local newAnimations = {
     ds = "10470104242", -- Replace with your new downslam animation ID
     up = "10503381238", -- Replace with your new mini uppercut animation ID
     wc = "15955393872", -- Replace with your new wall combo animation ID
-    fdash = "18715858574", -- Replace with your new front dash animation ID
+    fdash = "140164642047188", -- Replace with your new front dash animation ID
     bdash = "696969", -- Replace with your new back dash animation ID
     ldash = "10480796021", -- Replace with your new left dash animation ID
     rdash = "10480793962", -- Replace with your new right dash animation ID
@@ -363,6 +363,7 @@ local animDt = {
     m2 = { Speed = 1.3 },
     m3 = { Speed = 1.3 },
     m4 = { Speed = 1.3 },
+    fdash = { TimePosition = 6.55 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.25 },
     move4 = { TimePosition = 1 },
