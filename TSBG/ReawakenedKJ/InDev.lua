@@ -316,6 +316,7 @@ local handlers = {
             vf.AnchorPoint = Vector2.new(0.5, 0.5)
             vf.Size = UDim2.new(1, 0, 1, 0)
             vf.Position = UDim2.new(0.5, 0, 0.5, 0)
+            vf.CurrentCamera = workspace.CurrentCamera
             vf.Parent = image
 
             local ui = Instance.new("ScreenGui")
@@ -330,9 +331,14 @@ local handlers = {
                 local clone = lplr.Character:Clone()
                 clone.Parent = vf
                 local cloneHumanoid = clone:FindFirstChildWhichIsA("Humanoid")
+                for _, v in pairs(cloneHumanoid:GetPlayingAnimationTracks()) do
+                    v:Stop()
                 for _, v in pairs(hum:GetPlayingAnimationTracks()) do
                     local animation = v.Animation
-                    cloneHumanoid:
+                    local cloneTrack = hum:LoadAnimation(animation)
+                    cloneTrack.TimePosition = v.TimePosition
+                    cloneTrack:Play(0.100000001, v.WeightTarget, v.Speed)
+                end
             end)
 
             task.wait(5.4)
