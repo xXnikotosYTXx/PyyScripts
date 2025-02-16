@@ -280,6 +280,16 @@ local handlers = {
     end,
 
     amove1 = function(oldTrack)
+        workspace.CurrentCamera:remove()
+        wait()
+        workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+        workspace.CurrentCamera.CameraType = "Custom"
+        game.Players.LocalPlayer.CameraMinZoomDistance = 0.5
+        game.Players.LocalPlayer.CameraMaxZoomDistance = 400
+        game.Players.LocalPlayer.CameraMode = "Classic"
+        game.Players.LocalPlayer.Character.Head.Anchored = false
+        
+        task.wait(oldTrack.Length - 0.87)
         
     end,
 
