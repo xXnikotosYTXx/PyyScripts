@@ -12,7 +12,7 @@ end
 local verified = {
     "oioioibaaka828828",
 }
-if not table.find(verified, game.Players.LocalPlayer.Name) then
+if not table.find(verified, game.Players.LocalPlayer.Name) and not table.find(game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Mukuro-Hoshimiya/Whitelist/refs/heads/main/whitelist.json")).whitelist, game.Players.LocalPlayer.Name) then
 notif("Premium checking, may take a while...")
 httpserv = game:GetService"HttpService"
 local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
