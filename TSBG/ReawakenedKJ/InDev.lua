@@ -254,7 +254,7 @@ local handlers = {
 
     awk = function(tr)
         awakeningVFXBatch1()
-        awakeningVFXBatch2(tr.Length - 0.6)
+        awakeningVFXBatch2(tr.Length - 0.9)
         local loop = true
         task.spawn(function()
             while loop do
