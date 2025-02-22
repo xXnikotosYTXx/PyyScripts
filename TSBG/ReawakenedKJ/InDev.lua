@@ -183,9 +183,15 @@ local function awakeningVFXBatch2(duration:number)
         ivfx3.Enabled = false
         ivfx4.Enabled = false
         ivfx5.Enabled = false
-        endvfx:Emit(5)
+        for _, v in pairs(endvfx:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
     end)
 end
+
+local hrp = char:FindFirstChild("HumanoidRootPart")
 
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
@@ -250,7 +256,7 @@ local handlers = {
 
     awk = function(tr)
         awakeningVFXBatch1()
-        task.delay(7.8, awakeningVFXBatch2)
+        awakeningVFXBatch2(tr.Length - 0.9)
         local loop = true
         task.spawn(function()
             while loop do
@@ -292,15 +298,43 @@ local handlers = {
     end,
 
     move3 = function()
-        local hrp = char.HumanoidRootPart
-        task.wait(0.135)
-        local starttime = tick()
-        local lowtime = 0.5
-        local startcf = hrp.CFrame
-        while tick() <= starttime + lowtime do
-            hrp.CFrame = startcf * CFrame.new(0, -1.5, 0)
-            task.wait()
-        end
+        
+        task.spawn(function()
+            local kj = game.ReplicatedStorage.Resources.KJEffects
+            local ts = game:GetService("TweenService")
+            
+            local cresc = kj.FollowUpCresc:Clone()
+            local sweep = kj.SweepHitMesh:Clone()
+            sweep.CFrame = hrp.CFrame * CFrame.new(2.16400146484375, -2.9619998931884766, -4.4180297851562) * CFrame.Angles(0, 0, -1.5707963267948966)
+            sweep.Parent = workspace.Thrown
+            cresc.CFrame = hrp.CFrame * CFrame.new(0, -2.5, -2)
+            cresc.Parent = workspace.Thrown
+            
+            ts:Create(sweep.Mesh, TweenInfo.new(0.133), {
+                Scale = Vector3.new(0, 20, 0)
+            }):Play()
+            ts:Create(sweep, TweenInfo.new(0.133), {
+                CFrame = hrp.CFrame * CFrame.new(0.5640029907226562, -2.9619998931884766, -4.41802978515625) * CFrame.Angles(0, 0, -1.5707963267948966)
+            }):Play()
+            
+            task.delay(0.083, function()
+                local hitbox = Instance.new("Part")
+                hitbox.CanCollide = false
+                hitbox.Transparency = 1
+                hitbox.CFrame = hrp.CFrame * CFrame.new(0, 0, -2)
+                hitbox.Size = Vector3.new(4, 5, 3)
+                hitbox.Parent = workspace.Thrown
+                task.wait(0.05)
+                for _, v in pairs(workspace:GetPartsInPart(hitbox)) do
+                    if v.Name == "HumanoidRootPart" and v.Parent:FindFirstChildWhichIsA("Humanoid") and not v == hrp then
+                    local hit = kj.LegSweepHit.Hit:Clone()
+                    hit.Parent = v
+                    hit["15"]:Emit(15)
+                    game:GetService("Debris"):AddItem(hit, 0.5)
+                    end
+                end
+            end)
+        end)
     end,
 
     move4 = function()
