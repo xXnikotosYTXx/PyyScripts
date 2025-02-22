@@ -183,7 +183,11 @@ local function awakeningVFXBatch2(duration:number)
         ivfx3.Enabled = false
         ivfx4.Enabled = false
         ivfx5.Enabled = false
-        endvfx:Emit(5)
+        for _, v in pairs(endvfx:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
     end)
 end
 
