@@ -296,6 +296,11 @@ local handlers = {
     end,
 
     move3 = function()
+        
+        task.spawn(function()
+            
+        end)
+        
         local hrp = char.HumanoidRootPart
         task.wait(0.135)
         local starttime = tick()
