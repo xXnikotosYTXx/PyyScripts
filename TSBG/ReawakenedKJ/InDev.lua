@@ -310,8 +310,10 @@ local handlers = {
             
             ts:Create(sweep, TweenInfo.new(0.133), {
                 Scale = Vector3.new(0, 20, 0),
-                CFrame = hrp.
+                CFrame = hrp.CFrame * CFrame.new(0.5640029907226562, -2.9619998931884766, -4.41802978515625) * CFrame.Angles(0, 0, -1.5707963267948966)
             }):Play()
+            
+            task.delay(0.083)
         end)
         
         local hrp = char.HumanoidRootPart
