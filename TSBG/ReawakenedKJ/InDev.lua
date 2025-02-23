@@ -317,7 +317,7 @@ local handlers = {
                 local hit = kj.LegSweepHit.Hit:Clone()
                 hit.Parent = hrp
                 hit["15"]:Emit(15)
-                game:GetService("Debris"):AddItem()
+                game:GetService("Debris"):AddItem(hit, 0.5)
             end)
         end)
         
