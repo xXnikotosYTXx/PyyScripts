@@ -484,4 +484,4 @@ lplr:GetAttributeChangedSignal("Ultimate"):Connect(function()
     if lplr:GetAttribute("Ultimate") == 0 then
         task.wait(0.5) SetMoveNames()
     end
-end),
+end)
