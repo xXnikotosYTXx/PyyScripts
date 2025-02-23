@@ -301,10 +301,14 @@ local handlers = {
         
         task.spawn(function()
             local kj = game.ReplicatedStorage.Resources.KJEffects
+            local ts = game:GetService("TweenService")
             
             local cresc = kj.FollowUpCresc:Clone()
             local sweep = kj.SweepHitMesh:Clone()
-            sweep.CFrame = hrp.CFrame 
+            sweep.CFrame = hrp.CFrame * CFrame.new(2.16400146484375, -2.9619998931884766, -4.4180297851562) * CFrame.Angles(0, 0, -1.5707963267948966)
+            sweep.Parent = workspace.Thrown
+            
+            ts:Create(sweep, )
         end)
         
         local hrp = char.HumanoidRootPart
