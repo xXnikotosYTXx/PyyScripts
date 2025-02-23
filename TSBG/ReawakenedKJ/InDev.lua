@@ -300,6 +300,8 @@ local handlers = {
         task.spawn(function()
             local kj = game.ReplicatedStorage.Resources.KJEffects
             
+            local cresc = 
+            local sweep =
         end)
         
         local hrp = char.HumanoidRootPart
