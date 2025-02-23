@@ -326,11 +326,12 @@ local handlers = {
                 hitbox.Parent = workspace.Thrown
                 task.wait(0.05)
                 for _, v in pairs(workspace:GetPartsInPart(hitbox)) do
-                    if v.Name == "HumanoidR"
+                    if v.Name == "HumanoidRootPart" and v.Parent:FindFirstChildWhichIsA("Humanoid") and not v == hrp then
                     local hit = kj.LegSweepHit.Hit:Clone()
-                    hit.Parent = opphrp
+                    hit.Parent = v
                     hit["15"]:Emit(15)
                     game:GetService("Debris"):AddItem(hit, 0.5)
+                    end
                 end
             end)
         end)
