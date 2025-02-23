@@ -309,8 +309,9 @@ local handlers = {
             sweep.Parent = workspace.Thrown
             
             ts:Create(sweep, TweenInfo.new(0.133), {
-                Scale = Vector3.new(0, 20, 0, 0)
-            })
+                Scale = Vector3.new(0, 20, 0),
+                CFrame = hrp.
+            }):Play()
         end)
         
         local hrp = char.HumanoidRootPart
