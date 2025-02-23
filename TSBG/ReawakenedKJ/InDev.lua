@@ -318,7 +318,12 @@ local handlers = {
             }):Play()
             
             task.delay(0.083, function()
-                local hitbox = Instance.new("Par")
+                local hitbox = Instance.new("Part")
+                hitbox.CanCollide = false
+                hitbox.Transparency = 1
+                hitbox.Parent = worlspa
+                task.wait(0.05)
+                for _, v in pairs(workspace)
                 local hit = kj.LegSweepHit.Hit:Clone()
                 hit.Parent = opphrp
                 hit["15"]:Emit(15)
