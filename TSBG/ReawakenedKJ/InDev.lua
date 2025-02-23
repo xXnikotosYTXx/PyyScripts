@@ -298,6 +298,7 @@ local handlers = {
     move3 = function()
         
         task.spawn(function()
+            local kj = game.ReplicatedStorage.Resources.KJEffects
             
         end)
         
