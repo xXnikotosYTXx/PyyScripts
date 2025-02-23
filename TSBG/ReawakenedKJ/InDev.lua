@@ -335,16 +335,6 @@ local handlers = {
                 end
             end)
         end)
-        
-        local hrp = char.HumanoidRootPart
-        task.wait(0.135)
-        local starttime = tick()
-        local lowtime = 0.5
-        local startcf = hrp.CFrame
-        while tick() <= starttime + lowtime do
-            hrp.CFrame = startcf * CFrame.new(0, -1.5, 0)
-            task.wait()
-        end
     end,
 
     move4 = function()
