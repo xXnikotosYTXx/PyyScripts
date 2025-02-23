@@ -307,6 +307,8 @@ local handlers = {
             local sweep = kj.SweepHitMesh:Clone()
             sweep.CFrame = hrp.CFrame * CFrame.new(2.16400146484375, -2.9619998931884766, -4.4180297851562) * CFrame.Angles(0, 0, -1.5707963267948966)
             sweep.Parent = workspace.Thrown
+            cresc.CFrame = hrp.CFrame * CFrame.new(0, -2.5, -2)
+            cresc.Parent = workspace.Thrown
             
             ts:Create(sweep, TweenInfo.new(0.133), {
                 Scale = Vector3.new(0, 20, 0),
