@@ -322,14 +322,16 @@ local handlers = {
                 hitbox.CanCollide = false
                 hitbox.Transparency = 1
                 hitbox.CFrame = hrp.CFrame * CFrame.new(0, 0, -2)
-                hitbox.Size = Vector3.new()
+                hitbox.Size = Vector3.new(4, 5, 3)
                 hitbox.Parent = workspace.Thrown
                 task.wait(0.05)
-                for _, v in pairs(workspace)
-                local hit = kj.LegSweepHit.Hit:Clone()
-                hit.Parent = opphrp
-                hit["15"]:Emit(15)
-                game:GetService("Debris"):AddItem(hit, 0.5)
+                for _, v in pairs(workspace:GetPartsInPart(hitbox)) do
+                    if v.Name == "HumanoidR"
+                    local hit = kj.LegSweepHit.Hit:Clone()
+                    hit.Parent = opphrp
+                    hit["15"]:Emit(15)
+                    game:GetService("Debris"):AddItem(hit, 0.5)
+                end
             end)
         end)
         
