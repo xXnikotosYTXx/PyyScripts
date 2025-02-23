@@ -321,7 +321,9 @@ local handlers = {
                 local hitbox = Instance.new("Part")
                 hitbox.CanCollide = false
                 hitbox.Transparency = 1
-                hitbox.Parent = worlspa
+                hitbox.CFrame = hrp.CFrame * CFrame.new(0, 0, -2)
+                hitbox.Size = Vector3.new()
+                hitbox.Parent = workspace.Thrown
                 task.wait(0.05)
                 for _, v in pairs(workspace)
                 local hit = kj.LegSweepHit.Hit:Clone()
