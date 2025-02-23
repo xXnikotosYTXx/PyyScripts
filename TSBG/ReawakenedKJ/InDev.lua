@@ -315,8 +315,9 @@ local handlers = {
             
             task.delay(0.083, function()
                 local hit = kj.LegSweepHit.Hit:Clone()
-                
-                
+                hit.Parent = hrp
+                hit["15"]:Emit(15)
+                game:GetService("Debris"):AddItem()
             end)
         end)
         
