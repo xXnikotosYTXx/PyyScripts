@@ -310,14 +310,17 @@ local handlers = {
             cresc.CFrame = hrp.CFrame * CFrame.new(0, -2.5, -2)
             cresc.Parent = workspace.Thrown
             
+            ts:Create(sweep.Mesh, TweenInfo.new(0.133), {
+                Scale = Vector3.new(0, 20, 0)
+            }):Play()
             ts:Create(sweep, TweenInfo.new(0.133), {
-                Scale = Vector3.new(0, 20, 0),
                 CFrame = hrp.CFrame * CFrame.new(0.5640029907226562, -2.9619998931884766, -4.41802978515625) * CFrame.Angles(0, 0, -1.5707963267948966)
             }):Play()
             
             task.delay(0.083, function()
+                local hitbox = Instance.new("Par")
                 local hit = kj.LegSweepHit.Hit:Clone()
-                hit.Parent = hrp
+                hit.Parent = opphrp
                 hit["15"]:Emit(15)
                 game:GetService("Debris"):AddItem(hit, 0.5)
             end)
