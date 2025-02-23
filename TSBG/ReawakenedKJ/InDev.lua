@@ -191,6 +191,8 @@ local function awakeningVFXBatch2(duration:number)
     end)
 end
 
+local hrp = char:FindFirstChild("HumanoidRootPart")
+
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 end
@@ -302,6 +304,7 @@ local handlers = {
             
             local cresc = kj.FollowUpCresc:Clone()
             local sweep = kj.SweepHitMesh:Clone()
+            sweep.CFrame = hrp.CFrame 
         end)
         
         local hrp = char.HumanoidRootPart
