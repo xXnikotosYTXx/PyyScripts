@@ -300,8 +300,8 @@ local handlers = {
         task.spawn(function()
             local kj = game.ReplicatedStorage.Resources.KJEffects
             
-            local cresc = 
-            local sweep =
+            local cresc = kj.FollowUpCresc:Clone()
+            local sweep = kj.SweepHitMesh:Clone()
         end)
         
         local hrp = char.HumanoidRootPart
