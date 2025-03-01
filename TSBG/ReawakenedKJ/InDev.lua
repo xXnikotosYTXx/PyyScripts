@@ -291,8 +291,7 @@ local handlers = {
 
     move1 = function()
         local wind = game.ReplicatedStorage.Resources.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
-        wind.CFrame = hrp.CFrame
-        wind.Parent = workspace.Thrown
+        wind.Parent = hrp
         
         for _, v in pairs(wind:GetDescendants()) do
             if v:IsA("ParticleEmitter") then
