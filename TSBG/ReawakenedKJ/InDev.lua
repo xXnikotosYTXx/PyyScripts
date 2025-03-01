@@ -125,9 +125,9 @@ local newAnimations = {
     move3 = "16944265635", -- Replace with your new move 3 animation ID
     move4 = "17325254223", -- Replace with your new move 4 animation ID
     amove1 = "76530443909428", -- Replace with your new move awakening 1 animation ID
-    amove2 = "11365563255", -- Replace with your new move awakening 2 animation ID
+    amove2 = "12983333733", -- Replace with your new move awakening 2 animation ID
     amove3 = "77727115892579", -- Replace with your new move awakening 3 animation ID
-    amove4 = "13927612951", -- Replace with your new move awakening 4 animation ID
+    amove4 = "17141153099", -- Replace with your new move awakening 4 animation ID
 }
 
 -- Code/functions to use in the handlers
