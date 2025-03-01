@@ -498,6 +498,22 @@ handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
     game:GetService("Debris"):AddItem(smoke1, 5)
     game:GetService("Debris"):AddItem(smoke2, 5)
 
+    -- my part of the handler
+    task.spawn(function()
+        local collat = game.ReplicatedStorage.Resources.Collat
+        
+        local explosion = collat.ExplosionCharged:Clone()
+        explosion.Parent = hrp
+        
+        for _, v in pairs(explosion:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
+        
+        game:GetService("Debris"):AddItem(explosion, 5)
+    end)
+
     -- Raycasting for Impact Effect
     local rayOrigin = hrp.Position
     local rayDirection = hrp.CFrame.LookVector * 3.5
