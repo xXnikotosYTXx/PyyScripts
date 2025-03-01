@@ -290,7 +290,7 @@ local handlers = {
     end,
 
     move1 = function()
-        task.wait(0.6)
+        task.wait(0.5)
         local wind = game.ReplicatedStorage.Resources.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
         wind.Parent = hrp
         
@@ -472,24 +472,28 @@ handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
 
     local colateral1 = kjEffects.ColateralImapctTest.HitTwo:Clone()
     local colateral2 = kjEffects.ColateralImapctTest2.HitTwo:Clone()
+    local imapct = kjEffects.ColateralImapct.HitTwo:Clone()
     local spin = kjEffects.SpinnerEndWind.spinningemit:Clone()
     local smoke1 = kjEffects.spinnerthing.spinningparty:Clone()
     local smoke2 = kjEffects.spinnerthing.spinningpartysmoke:Clone()
 
     colateral1.Parent = hrp
     colateral2.Parent = hrp
+    imapct.Parent = hrp
     spin.Parent = hrp
     smoke1.Parent = hrp
     smoke2.Parent = hrp
 
     emitParticles(colateral1)
     emitParticles(colateral2)
+    emitParticles(imapct)
     emitParticles(spin)
     emitParticles(smoke1)
     emitParticles(smoke2)
 
     game:GetService("Debris"):AddItem(colateral1, 5)
     game:GetService("Debris"):AddItem(colateral2, 5)
+    game:GetService("Debris"):AddItem(imapct, 5)
     game:GetService("Debris"):AddItem(spin, 5)
     game:GetService("Debris"):AddItem(smoke1, 5)
     game:GetService("Debris"):AddItem(smoke2, 5)
@@ -505,10 +509,14 @@ handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
     if raycastResult then
         local hitPart = raycastResult.Instance
         if hitPart and hitPart.Name == "HumanoidRootPart" and not hrp and hitPart.Parent and hitPart.Parent:FindFirstChild("Humanoid") then
-            local impactEffect = kjEffects.ImpactEffect:Clone()
-            impactEffect.Parent = hitPart
-            emitParticles(impactEffect)
-            game:GetService("Debris"):AddItem(impactEffect, 5)
+            local impactEffect1 = kjEffects.ImpactEffect.Attachment:Clone()
+            impactEffect1.Parent = hitPart
+            local impactEffect2 = kjEffects.ImpactEffect2.Attachment:Clone()
+            ImpactEffect2.Parent = hitPart
+            emitParticles(impactEffect1)
+            game:GetService("Debris"):AddItem(impactEffect1, 5)
+            emitParticles(impactEffect2)
+            game:GetService("Debris"):AddItem(impactEffect2, 5)
         end
     end
 end
@@ -521,7 +529,7 @@ local animDt = {
     m4 = { Speed = 1.3 },
     fdash = { TimePosition = 6.55, Speed = 1.5 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
-    move2 = { TimePosition = 2, EndTime = 2.1, Fade = 0.5 },
+    move2 = { TimePosition = 2, EndTime = 1.6, Fade = 0.5 },
     move4 = { TimePosition = 1 },
     amove3 = { Speed = 2.3, EndTime = ufwTime }
 }
