@@ -290,6 +290,7 @@ local handlers = {
     end,
 
     move1 = function()
+        task.wait(0.6)
         local wind = game.ReplicatedStorage.Resources.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
         wind.Parent = hrp
         
