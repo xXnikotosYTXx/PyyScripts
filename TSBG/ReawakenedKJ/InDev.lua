@@ -290,7 +290,17 @@ local handlers = {
     end,
 
     move1 = function()
-
+        local wind = game.ReplicatedStorage.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
+        wind.CFrame = hrp.CFrame * CFrame.new(0, 0, -3)
+        wind.Parent = workspace.Thrown
+        
+        for _, v in pairs(wind:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
+        
+        game:GetService("Debris"):AddItem(wind, 5)
     end,
 
     move2 = function()
