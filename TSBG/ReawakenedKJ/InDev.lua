@@ -291,7 +291,7 @@ local handlers = {
 
     move1 = function()
         local wind = game.ReplicatedStorage.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
-        wind.CFrame = hrp.CFrame * CFrame.new(0, 0, -3)
+        wind.CFrame = hrp.CFrame
         wind.Parent = workspace.Thrown
         
         for _, v in pairs(wind:GetDescendants()) do
