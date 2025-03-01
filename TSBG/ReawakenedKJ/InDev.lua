@@ -488,7 +488,7 @@ local animDt = {
     m4 = { Speed = 1.3 },
     fdash = { TimePosition = 6.55, Speed = 1.5 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
-    move2 = { TimePosition = 2, EndTime = 1.25 },
+    move2 = { TimePosition = 2, EndTime = 1.75 },
     move4 = { TimePosition = 1 },
     amove3 = { Speed = 2.3, EndTime = ufwTime }
 }
