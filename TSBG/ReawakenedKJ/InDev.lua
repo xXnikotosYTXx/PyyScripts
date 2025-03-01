@@ -449,7 +449,25 @@ local handlers = {
     end,
 
     amove4 = function()
-        print("")
+        local character = v967.char
+        if not character or not character.PrimaryPart then return end
+        
+        local primaryPart = character.PrimaryPart
+        
+        -- Clone the Stoic Bomb effect
+        local stoicBomb = game.ReplicatedStorage.Resources.StoicBomb:Clone()
+        stoicBomb.Parent = workspace
+        stoicBomb.Position = primaryPart.Position
+        stoicBomb.Size = Vector3.new(15, 4, 15) * stoicBomb:GetAttribute("Scale")
+        
+        -- Apply explosion scaling and transparency animation
+        game:GetService("TweenService"):Create(stoicBomb, TweenInfo.new(stoicBomb:GetAttribute("Time") * 3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Size = stoicBomb.Size + Vector3.new(15, 4, 15) * stoicBomb:GetAttribute("Scale"),
+            Transparency = 1
+        }):Play()
+        
+        -- Remove effect after its duration
+        game:GetService("Debris"):AddItem(stoicBomb, stoicBomb:GetAttribute("Time") * 3)
     end,
 }
 
