@@ -228,7 +228,7 @@ local function playAnimation(id, details)
             animationTrack:AdjustWeight(details.Weight)
         end
         if details.EndTime then
-            task.delay(details.EndTime, function() animationTrack:Stop() end)
+            task.delay(details.EndTime, function() animationTrack:Stop(details.Fade or 0) end)
         end
     end
 
@@ -304,85 +304,62 @@ local handlers = {
     end,
 
     move2 = function()
-
+        task.wait(0.1)
+        local smoke = game.ReplicatedStorage.Resources.KJEffects.BARRAGESMOKE.BARRAGESMOKE:Clone()
+        local hits = game.ReplicatedStorage.Resources.KJEffects.HitParticles.Hit:Clone()
+        smoke.Parent = hrp
+        hits.Parent = hrp
+        
+        for _, v in pairs(smoke:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
+        for _, v in pairs(hits:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
+        
+        game:GetService("Debris"):AddItem(smoke, 5)
+        game:GetService("Debris"):AddItem(hits, 5)
     end,
 
     move3 = function()
         
         task.spawn(function()
+            task.wait(0.2)
             local kj = game.ReplicatedStorage.Resources.KJEffects
-            local ts = game:GetService("TweenService")
+            local sweep1 = kj.LegSweepHit.Hit
+            local sweep2 = kj.LegSweepHit.HitTwo
+            sweep1.Parent = hrp
+            sweep2.Parent = hrp
             
-            local cresc = kj.FollowUpCresc:Clone()
-            local sweep = kj.SweepHitMesh:Clone()
-            sweep.CFrame = hrp.CFrame * CFrame.new(2.16400146484375, -2.9619998931884766, -4.4180297851562) * CFrame.Angles(0, 0, -1.5707963267948966)
-            sweep.Parent = workspace.Thrown
-            cresc.CFrame = hrp.CFrame * CFrame.new(0, -2.5, -2)
-            cresc.Parent = workspace.Thrown
-            
-            ts:Create(sweep.Mesh, TweenInfo.new(0.133), {
-                Scale = Vector3.new(0, 20, 0)
-            }):Play()
-            ts:Create(sweep, TweenInfo.new(0.133), {
-                CFrame = hrp.CFrame * CFrame.new(0.5640029907226562, -2.9619998931884766, -4.41802978515625) * CFrame.Angles(0, 0, -1.5707963267948966)
-            }):Play()
-            
-            task.delay(0.083, function()
-                local hitbox = Instance.new("Part")
-                hitbox.CanCollide = false
-                hitbox.Transparency = 1
-                hitbox.CFrame = hrp.CFrame * CFrame.new(0, 0, -2)
-                hitbox.Size = Vector3.new(4, 5, 3)
-                hitbox.Parent = workspace.Thrown
-                task.wait(0.05)
-                for _, v in pairs(workspace:GetPartsInPart(hitbox)) do
-                    if v.Name == "HumanoidRootPart" and v.Parent:FindFirstChildWhichIsA("Humanoid") and not v == hrp then
-                    local hit = kj.LegSweepHit.Hit:Clone()
-                    hit.Parent = v
-                    hit["15"]:Emit(15)
-                    game:GetService("Debris"):AddItem(hit, 0.5)
-                    end
+            for _, v in pairs(sweep1:GetDescendants()) do
+                if v:IsA("ParticleEmitter") then
+                    v:Emit(v:GetAttribute("EmitCount"))
                 end
-            end)
+            end
+            for _, v in pairs(sweep2:GetDescendants()) do
+                if v:IsA("ParticleEmitter") then
+                    v:Emit(v:GetAttribute("EmitCount"))
+                end
+            end
+            
+            game:GetService("Debris"):AddItem(sweep1, 5)
+            game:GetService("Debris"):AddItem(sweep2, 5)
         end)
     end,
 
     move4 = function()
         task.wait(0.5)
-        local vfx = game:GetService("ReplicatedStorage").Resources.Dragon.Explosion.Part.WindFast
-
-        local vfx1 = vfx:Clone()
-        vfx1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-        local vfx2 = vfx:Clone()
-        vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
-        for _, child in pairs(vfx1:GetChildren()) do
-            if child:IsA("ParticleEmitter") then
-
-                child.Speed = NumberRange.new(0.5)
-                child.Color = ColorSequence.new(Color3.new(0.25, 0.3, 0.25))
-                child.Size = NumberSequence.new({
-                    NumberSequenceKeypoint.new(0, 25),
-                    NumberSequenceKeypoint.new(1, 50),
-                })
-
-                child:Emit(4)
-            end
-        end
-
-        for _, child in pairs(vfx2:GetChildren()) do
-            if child:IsA("ParticleEmitter") then
-
-                child.Speed = NumberRange.new(0.5)
-                child.Color = ColorSequence.new(Color3.new(1, 0, 0))
-                child.Size = NumberSequence.new({
-                    NumberSequenceKeypoint.new(0, 10),
-                    NumberSequenceKeypoint.new(1, 20),
-                })
-
-                child:Emit(6)
-            end
-        end
+        local colateral1 = game.ReplicatedStorage.KJEffects.ColateralImapctTest.HitTwo:Clone()
+        local colateral2 = game.ReplicatedStorage.KJEffects.ColateralImapctTest2.HitTwo:Clone()
+        local spin = game.ReplicatedStorage.KJEffects.SpinnerEndWind.spinningemit:Clone()
+        local smoke1 = game.ReplicatedStorage.KJEffects.spinnerthing.spinningparty:Clone()
+        local smoke2 = game.ReplicatedStorage.KJEffects.spinnerthing.spinningpartysmoke:Clone()
+        
+        -- im too lazy. chatgpt, do it fornme
     end,
 
     amove1 = function(oldTrack)
@@ -480,6 +457,61 @@ local handlers = {
         game:GetService("Debris"):AddItem(stoicBomb, stoicBomb:GetAttribute("Time") * 3)
     end,
 }
+handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
+    task.wait(0.5)
+
+    local function emitParticles(instance)
+        for _, v in pairs(instance:GetDescendants()) do
+            if v:IsA("ParticleEmitter") then
+                v:Emit(v:GetAttribute("EmitCount"))
+            end
+        end
+    end
+
+    local kjEffects = game.ReplicatedStorage.Resources.KJEffects
+
+    local colateral1 = kjEffects.ColateralImapctTest.HitTwo:Clone()
+    local colateral2 = kjEffects.ColateralImapctTest2.HitTwo:Clone()
+    local spin = kjEffects.SpinnerEndWind.spinningemit:Clone()
+    local smoke1 = kjEffects.spinnerthing.spinningparty:Clone()
+    local smoke2 = kjEffects.spinnerthing.spinningpartysmoke:Clone()
+
+    colateral1.Parent = hrp
+    colateral2.Parent = hrp
+    spin.Parent = hrp
+    smoke1.Parent = hrp
+    smoke2.Parent = hrp
+
+    emitParticles(colateral1)
+    emitParticles(colateral2)
+    emitParticles(spin)
+    emitParticles(smoke1)
+    emitParticles(smoke2)
+
+    game:GetService("Debris"):AddItem(colateral1, 5)
+    game:GetService("Debris"):AddItem(colateral2, 5)
+    game:GetService("Debris"):AddItem(spin, 5)
+    game:GetService("Debris"):AddItem(smoke1, 5)
+    game:GetService("Debris"):AddItem(smoke2, 5)
+
+    -- Raycasting for Impact Effect
+    local rayOrigin = hrp.Position
+    local rayDirection = hrp.CFrame.LookVector * 3.5
+    local raycastParams = RaycastParams.new()
+    raycastParams.FilterDescendantsInstances = {character}
+    raycastParams.IgnoreWater = true
+
+    local raycastResult = workspace:Raycast(rayOrigin, rayDirection, raycastParams)
+    if raycastResult then
+        local hitPart = raycastResult.Instance
+        if hitPart and hitPart.Name == "HumanoidRootPart" and not hrp and hitPart.Parent and hitPart.Parent:FindFirstChild("Humanoid") then
+            local impactEffect = kjEffects.ImpactEffect:Clone()
+            impactEffect.Parent = hitPart
+            emitParticles(impactEffect)
+            game:GetService("Debris"):AddItem(impactEffect, 5)
+        end
+    end
+end
 
 -- Table of animation data for the animations
 local animDt = {
@@ -489,7 +521,7 @@ local animDt = {
     m4 = { Speed = 1.3 },
     fdash = { TimePosition = 6.55, Speed = 1.5 },
     move1 = { TimePosition = 3.8, Speed = 1.8 },
-    move2 = { TimePosition = 2, EndTime = 1.75 },
+    move2 = { TimePosition = 2, EndTime = 2.1, Fade = 0.5 },
     move4 = { TimePosition = 1 },
     amove3 = { Speed = 2.3, EndTime = ufwTime }
 }
