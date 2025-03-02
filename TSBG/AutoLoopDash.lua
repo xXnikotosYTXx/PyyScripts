@@ -31,15 +31,14 @@ button.Activated:Connect(function()
         Goal = "KeyPress"
     })
 
-    local bvEvent = char.DescendantAdded:Connect(function(d)
-        if d:IsA("BodyVelocity") then
-            while true do
-                d.Velocity = Vector3.new(0, d.Velocity.Y, 0)
-                task.wait()
-            end
+    local keepStopping = true
+    task.spawn(function()
+        local startcf = char.HumanoidRootPart.CFrame
+        while keepStopping then
+            char.HumanoidRootPart.CFrame = startcf
+            task.wait()
         end
     end)
-    task.delay(0.5, function()
-        bvEvent:Disconnect()
-    end)
+    task.wait(1.25)
+    keepStopping = false
 end)
