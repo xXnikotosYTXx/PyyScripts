@@ -34,7 +34,7 @@ button.Activated:Connect(function()
     local keepStopping = true
     task.spawn(function()
         local startcf = char.HumanoidRootPart.CFrame
-        while keepStopping then
+        while keepStopping do
             char.HumanoidRootPart.CFrame = startcf
             task.wait()
         end
