@@ -18,7 +18,7 @@ restraint.AspectType = Enum.AspectType.FitWithinMaxSize
 restraint.DominantAxis = Enum.DominantAxis.Width
 restraint.Parent = button
 
-button.Parent = lplr.PlayerGui
+button.Parent = lplr.PlayerGui.ScreenGui
 
 
 
