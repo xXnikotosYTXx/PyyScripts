@@ -31,22 +31,15 @@ button.Activated:Connect(function()
         Goal = "KeyPress"
     })
 
-    local dashEvent = hum.AnimationPlayed:Connect(function(tr)
-        if tr.Animation.AnimationId == "rbxassetid://10479335397" then
-            local bvEvent = char.DescendantAdded:Connect(function(d)
-                if d:IsA("BodyVelocity") then
-                    while true do
-                        d.Velocity = Vector3.new(0, d.Velocity.Y, 0)
-                        task.wait()
-                    end
-                end
-            end)
-            task.delay(0.5, function()
-                bvEvent:Disconnect()
-            end)
+    local bvEvent = char.DescendantAdded:Connect(function(d)
+        if d:IsA("BodyVelocity") then
+            while true do
+                d.Velocity = Vector3.new(0, d.Velocity.Y, 0)
+                task.wait()
+            end
         end
     end)
     task.delay(0.5, function()
-        dashEvent:Disconnect()
+        bvEvent:Disconnect()
     end)
 end)
