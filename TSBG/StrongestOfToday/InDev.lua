@@ -20,8 +20,8 @@ local b1, b2, b3, b4 = bb1["ToolName"], bb2["ToolName"], bb3["ToolName"], bb4["T
 
 -- Move names
 local function SetMoveNames()
-    b1.Text = "Reversal Blast"
-    b2.Text = "Infinity"
+    b1.Text = "Reversal Technique"
+    b2.Text = "Lapse Infinity"
     b3.Text = "Kickback"
     b4.Text = "Uprise"
 end
@@ -29,10 +29,10 @@ SetMoveNames()
 
 -- Awakening move names
 local function SetAwkNames()
-    b1.Text = "Reversal Counter"
-    b2.Text = "Max Blue"
-    b3.Text = "200% Hollow Purple"
-    b4.Text = "Hollow Nuke"
+    b1.Text = "Lapse Reversal"
+    b2.Text = "MAX Blue"
+    b3.Text = "Hollow Purple"
+    b4.Text = "200% Purple"
 end
 
 -- Animations
