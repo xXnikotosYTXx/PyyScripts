@@ -193,6 +193,74 @@ end
 
 local hrp = char:FindFirstChild("HumanoidRootPart")
 
+local function playbfvfx(target)
+    local char = lplr.Character or lplr.CharacterAdded:Wait()
+    local torso = char:FindFirstChild("Torso")
+    local ttorso = target:FindFirstChild("Torso")
+
+    if torso then
+        local att1 = Instance.new("Attachment", torso)
+        att1.CFrame = CFrame.new(0, 1, 1.5) * CFrame.fromEulerAngles(math.rad(torso.Rotation.X), math.rad(torso.Rotation.Y), math.rad(torso.Rotation.Z))
+
+        local p1 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+        p1.Parent = att1
+        for _, v in ipairs(p1:GetChildren()) do
+            if v:IsA("ParticleEmitter") then
+                v.LockedToPart = false
+                v:Emit(v:GetAttribute("EmitCount") or 1)
+            end
+        end
+
+        local p2 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Origin:Clone()
+        p2.Parent = att1
+        for _, v in ipairs(p2:GetChildren()) do
+            if v:IsA("ParticleEmitter") then
+                v.LockedToPart = false
+                v:Emit(v:GetAttribute("EmitCount") or 1)
+            end
+        end
+
+        Debris:AddItem(att1, 1)
+    end
+
+    if ttorso then
+        local att2 = Instance.new("Attachment", ttorso)
+        att2.CFrame = CFrame.new(0, 0, 0) * CFrame.fromEulerAngles(math.rad(ttorso.Rotation.X), math.rad(ttorso.Rotation.Y), math.rad(ttorso.Rotation.Z))
+
+        local p3 = game.ReplicatedStorage.Resources.KJEffects["KJWallCombo"].FinalImpact.Attachment:Clone()
+        p3.Parent = att2
+        for _, v in ipairs(p3:GetChildren()) do
+            if v:IsA("ParticleEmitter") then
+                v.LockedToPart = false
+                v:Emit(v:GetAttribute("EmitCount") or 1)
+            end
+        end
+
+        Debris:AddItem(att2, 1)
+    end
+end
+
+local function m1finisher()
+    local nearestCharacter = nil
+    local maxDistance = 100
+    
+    for _, v in pairs(workspace.Live:GetChildren()) do
+        local humanoid = v:FindFirstChildOfClass("Humanoid")
+        if humanoid and v ~= char then
+            local opponentHrp = v:FindFirstChild("HumanoidRootPart")
+            if (opponentHrp.Position - hrp.Position).Magnitude < maxDistance then
+                maxDistance = (opponentHrp.Position - hrp.Position).Magnitude
+                nearestCharacter = v
+            end
+        end
+    end
+    
+    local nearestHumanoid = nearestCharacter:FindFirstChildOfClass("Humanoid")
+    if nearestHumanoid.Health <= 4 then
+        playbfvfx(nearestCharacter)
+    end
+end
+
 local function chat(msg: string)
     game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(msg, "All")
 end
