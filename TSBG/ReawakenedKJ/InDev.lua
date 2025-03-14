@@ -450,57 +450,22 @@ local handlers = {
 
     amove3 = function(newTrack, oldTrack)
         task.spawn(function()
-            workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
-            local CameraAnimator = cutmod.new(workspace.CurrentCamera, char.HumanoidRootPart)
-            local seq = cfseq.new()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/TSBG/ReawakenedKJ/asset-wfu"))()
         end)
-
-        task.spawn(function()
-            task.wait(0.5)
-            local image = Instance.new("ImageLabel")
-            image.Visible = true
-            image.BackgroundTransparency = 1
-            image.Image = "rbxassetid://118021299550047"
-            image.AnchorPoint = Vector2.new(0.5, 0.5)
-            image.Size = UDim2.new(1, 0, 1, 0)
-            image.Position = UDim2.new(0.5, 0, 0.5, 0)
-
-            local vf = Instance.new("ViewportFrame")
-            vf.Visible = true
-            vf.BackgroundTransparency = 1
-            vf.AnchorPoint = Vector2.new(0.5, 0.5)
-            vf.Size = UDim2.new(1, 0, 1, 0)
-            vf.Position = UDim2.new(0.5, 0, 0.5, 0)
-            vf.CurrentCamera = workspace.CurrentCamera
-            vf.Parent = image
-
-            local ui = Instance.new("ScreenGui")
-            ui.Enabled = true
-            ui.IgnoreGuiInset = true
-            ui.ScreenInsets = Enum.ScreenInsets.None
-            ui.Parent = lplr.PlayerGui
-            image.Parent = ui
-
-            task.spawn(function()
-                while true do
-                    vf:ClearAllChildren()
-                    local newChar = Instance.new("Model")
-                    newChar.Parent = vf
-                    for _, v in pairs(char:GetChildren()) do
-                        if not v:IsA("BaseScript") then
-                            v:Clone().Parent = newChar
-                        end
-                    end
-                    task.wait()
-                end
-            end)
-
-            task.wait(oldTrack.Length - 2.64)
-            ui:Destroy()
-        end)
-
-        task.wait(oldTrack.Length - 2.64)
-        playAnimation("77727115892579", {Weight = 10, TimePosition = 25.5, Speed = 1, EndTime = 2.25})
+        
+        workspace.CurrentCamera:Destroy()
+        task.wait()
+        workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid')
+        workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
+        game.Players.LocalPlayer.CameraMinZoomDistance = 0.5
+        game.Players.LocalPlayer.CameraMaxZoomDistance = 400
+        game.Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+        game.Players.LocalPlayer.Character.Head.Anchored = false
+        
+        local camera = workspace.CurrentCamera
+        camera.CameraType = Enum.CameraType.Scriptable
+        task.wait(24.5)
+        camera.CameraType = Enum.CameraType.Custom
     end,
 
     amove4 = function()
