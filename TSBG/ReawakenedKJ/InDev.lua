@@ -489,6 +489,9 @@ local handlers = {
         -- Remove effect after its duration
         game:GetService("Debris"):AddItem(stoicBomb, stoicBomb:GetAttribute("Time") * 3)
     end,
+    
+    
+    
 }
 handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
     task.wait(0.5)
