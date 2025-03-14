@@ -44,6 +44,19 @@ local function SetAwkNames()
     b4.Text = "Sky Maelstrom"
 end
 
+-- Tools
+local extraTools = {
+    run = {
+        Name = "Run", -- if Name is not provided, it uses it's internal name instead ("run")
+    }
+}
+local extraMoves = { -- Tools but acts like moves
+    fart = {
+        Name = "Fart",
+        Cooldown = 1, -- Adds a cooldown on the tool
+    }
+}
+
 -- Animations
 -- Old Animations (Animations that are currently being replaced)
 local oldAnimations = {
@@ -135,6 +148,7 @@ end
 
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
+-- Also handlers for the extraTools and extraMoves
 local handlers = {
     m1 = function() end,
     m2 = function() end,
@@ -252,6 +266,45 @@ local handlers = {
 local animDt = {
     move2 = { Speed = 1.7 },
 }
+
+-- Tool/Moves
+-- Tools
+for k, v in pairs(extraTools) do
+    local tool = Instance.new("Tool")
+    tool.Name = v.Name or k
+    tool.RequiresHandle = false
+    tool.Parent = lplr.Backpack
+    
+    tool.Equipped:Connect(function(mouse)
+        local handler = handlers[k] or function()end
+        handler(mouse, true, tool) -- Second parameter is if it is equipped or not, third is the tool incase of uhh
+    end)
+    tool.Unequipped:Connect(function(mouse)
+        local handler = handlers[k] or function()end
+        handler(mouse, false, tool) -- Second parameter is if it is equipped or not, third is the tool incase of uhh
+    end)
+end
+-- Extra moves
+for k, v in pairs(extraMoves) do
+    local tool = Instance.new("Tool")
+    tool.Name = v.Name or k
+    tool.RequiresHandle = false
+    tool.Parent = lplr.Backpack
+    
+    tool.Equipped:Connect(function(mouse)
+        local hum = char.Humanoid
+        local handler = handlers[k] or function()end
+        
+        handler(mouse)
+        hum:UnequipTools()
+        
+        task.spawn(function()
+            local tweenService = game:GetService("TweenService")
+            local BACKPACK_SCRIPT = hotbar:FindFirstChildOfClass("LocalScript") or backpack:FindFirstChildOfClass("LocalScript")
+            local COOLDOWN_UI = BACKPACK_SCRIPT.Base.Cooldown
+        end)
+    end)
+end
 
 local hum = char:FindFirstChildOfClass("Humanoid")
 local animator = hum:FindFirstChildOfClass("Animator")
