@@ -290,9 +290,15 @@ for k, v in pairs(extraMoves) do
     tool.Name = v.Name or k
     tool.RequiresHandle = false
     tool.Parent = lplr.Backpack
+    tool:SetAttribute("OnCooldown", falsse)
     
     tool.Equipped:Connect(function(mouse)
         local hum = char.Humanoid
+        if tool:GetAttribute("OnCooldown") then
+            hum:UnequipTools()
+            return
+        end
+        tool:SetAttribute("OnCooldown", true)
         local handler = handlers[k] or function()end
         
         handler(mouse)
@@ -302,6 +308,12 @@ for k, v in pairs(extraMoves) do
             local tweenService = game:GetService("TweenService")
             local BACKPACK_SCRIPT = hotbar:FindFirstChildOfClass("LocalScript") or backpack:FindFirstChildOfClass("LocalScript")
             local COOLDOWN_UI = BACKPACK_SCRIPT.Base.Cooldown
+            
+            local cooldownUi = COOLDOWN_UI:Clone()
+            cooldownUi.Parent = hotbarf:FindFirstChild(tostring(#lplr.Backpack:GetChildren()))
+            tweenService:Create(cooldownUi, TweenInfo.new(v.Cooldown), {Size = UDim2.new(1, 0, 0, 0)}):Play()
+            task.wait(v.Cooldown)
+            tool:SetAttribute("OnCooldown", false)
         end)
     end)
 end
