@@ -32,7 +32,7 @@ refs.__namecall = hookmetamethod(game, "__namecall", function(self, ...)
                                     task.wait(1.15)
                                     -- Move forward
                                     local hrp = char.HumanoidRootPart
-                                    hrp.CFrame = hrp.CFrame * CFrame.new(0, 0, -25.5)
+                                    hrp.CFrame = hrp.CFrame * CFrame.new(0, 0, -26.5)
 
                                     -- Invert camera offset
                                     local cam = workspace.CurrentCamera
