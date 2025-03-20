@@ -36,7 +36,7 @@ refs.__namecall = hookmetamethod(game, "__namecall", function(self, ...)
 
                                     -- Invert camera offset
                                     local cam = workspace.CurrentCamera
-                                    cam.CFrame = CFrame.new(hrp.Position * CFrame.new(0, 0, 15), hrp.Position)
+                                    cam.CFrame = CFrame.new((hrp.CFrame * CFrame.new(0, 0, 15)).Position, hrp.Position)
 
                                     -- Use Lethal Whirlwind Stream
                                     local whirlwind = player.Backpack:FindFirstChild("Lethal Whirlwind Stream") or player.Character:FindFirstChild("Lethal Whirlwind Stream")
