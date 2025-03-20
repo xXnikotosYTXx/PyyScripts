@@ -240,6 +240,27 @@ local function playbfvfx(target)
     end
 end
 
+local function emitParticles(attachment: Attachment)
+    assert(attachment:IsA("Attachment"), "Particle container must be attachment!")
+    for _, v in pairs(attachment:GetDescendants()) do
+        if v:IsA("Attachment") then
+            v:Emit(v:GetAttribute("EmitCount") or 1)
+        end
+    end
+end
+
+local function enableParticles(attachment: Attachment)
+    assert(attachment:IsA("Attachment"), "Particle container must be attachment!")
+    for _, v in pairs(attachment:GetDescendants()) do
+        if v:IsA("Attachment") then
+            v.Enabled = true
+            task.wait(v:GetAttribute("EmitDuration") or 1, function()
+                v.Enabled = false
+            end)
+        end
+    end
+end
+
 local function m1finisher()
     local nearestCharacter = nil
     local maxDistance = 100
@@ -469,25 +490,7 @@ local handlers = {
     end,
 
     amove4 = function()
-        local character = v967.char
-        if not character or not character.PrimaryPart then return end
         
-        local primaryPart = character.PrimaryPart
-        
-        -- Clone the Stoic Bomb effect
-        local stoicBomb = game.ReplicatedStorage.Resources.StoicBomb:Clone()
-        stoicBomb.Parent = workspace
-        stoicBomb.Position = primaryPart.Position
-        stoicBomb.Size = Vector3.new(15, 4, 15) * stoicBomb:GetAttribute("Scale")
-        
-        -- Apply explosion scaling and transparency animation
-        game:GetService("TweenService"):Create(stoicBomb, TweenInfo.new(stoicBomb:GetAttribute("Time") * 3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-            Size = stoicBomb.Size + Vector3.new(15, 4, 15) * stoicBomb:GetAttribute("Scale"),
-            Transparency = 1
-        }):Play()
-        
-        -- Remove effect after its duration
-        game:GetService("Debris"):AddItem(stoicBomb, stoicBomb:GetAttribute("Time") * 3)
     end,
     
     
@@ -583,7 +586,8 @@ local animDt = {
     move1 = { TimePosition = 3.8, Speed = 1.8 },
     move2 = { TimePosition = 2, EndTime = 1.6, Fade = 0.5 },
     move4 = { TimePosition = 1 },
-    amove3 = { Speed = 2.3, EndTime = ufwTime }
+    amove3 = { Speed = 2.3, EndTime = ufwTime },
+    amove4 = { Speed = 2 },
 }
 
 local hum = char:FindFirstChildOfClass("Humanoid")
