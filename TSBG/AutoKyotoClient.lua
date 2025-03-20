@@ -29,7 +29,7 @@ refs.__namecall = hookmetamethod(game, "__namecall", function(self, ...)
                         if humanoid then
                             for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
                                 if track.Animation and track.Animation.AnimationId == "rbxassetid://12273188754" then
-                                    
+                                    task.wait(1.15)
                                     -- Move forward
                                     local hrp = char.HumanoidRootPart
                                     hrp.CFrame = hrp.CFrame * CFrame.new(0, 0, -25.5)
