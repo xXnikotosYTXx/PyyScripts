@@ -29,15 +29,15 @@ refs.__namecall = hookmetamethod(game, "__namecall", function(self, ...)
                         if humanoid then
                             for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
                                 if track.Animation and track.Animation.AnimationId == "rbxassetid://12273188754" then
-                                    task.wait(1.15)
+                                    
                                     -- Move forward
                                     local hrp = char.HumanoidRootPart
-                                    local originalCFrame = hrp.CFrame
                                     hrp.CFrame = hrp.CFrame * CFrame.new(0, 0, -25.5)
 
                                     -- Invert camera offset
                                     local cam = workspace.CurrentCamera
-                                    cam.CFrame = CFrame.new((hrp.CFrame * CFrame.new(0, 0, 15)).Position, originalCFrame.Position)
+                                    local camOffset = cam.CFrame.Position - hrp.Position
+                                    cam.CFrame = CFrame.new(hrp.Position - camOffset, hrp.Position)
 
                                     -- Use Lethal Whirlwind Stream
                                     local whirlwind = player.Backpack:FindFirstChild("Lethal Whirlwind Stream") or player.Character:FindFirstChild("Lethal Whirlwind Stream")
