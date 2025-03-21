@@ -559,7 +559,7 @@ handlers.amove4 = function()
         emitParticles(stoicAttachment)
         emitParticles(stoicSmoke)
         emitParticles(stoicBoom)
-    end,
+    end
 handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
     task.wait(0.5)
 
