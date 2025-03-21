@@ -245,6 +245,7 @@ local function emitParticles(attachment: Attachment)
     for _, v in pairs(attachment:GetDescendants()) do
         if v:IsA("Attachment") then
             v:Emit(v:GetAttribute("EmitCount") or 1)
+            game:GetService("Debris"):AddItem(v, 5)
         end
     end
 end
@@ -256,6 +257,7 @@ local function enableParticles(attachment: Attachment, duration: number)
             v.Enabled = true
             task.delay(duration or v:GetAttribute("EmitDuration") or 1, function()
                 v.Enabled = false
+                game:GetService("Debris"):AddItem(v, duration or v:GetAttribute("Duration") or 1)
             end)
         end
     end
@@ -490,12 +492,74 @@ local handlers = {
     end,
 
     amove4 = function()
+        local kjEffects = game.ReplicatedStorage.Resources.KJEffects
+        local stoicEffects = game.ReplicatedStorage.Resources.StoicBomb
         
+        local speedlines = kjEffects.stoicbombspeedlines.Attachment:Clone() speedlines.Parent = hrp
+        local stoicAttachment = kjEffects["stoic bomb boom entrance"].Attachment:Clone() stoicAttachment.Parent = hrp
+        local stoicSmoke = kjEffects["stoic bomb boom entrance"].smok:Clone() stoicSmoke.Parent = hrp
+        local stoicBoom = kjEffects["stoic bomb boom entrance"].THEACTUALBOOM:Clone() stoicBoom.Parent = hrp
+        local stoicHeatAttachment = stoicEffects.HEAT.Part.Attachment:Clone() stoicHeatAttachment.Parent = hrp
+        
+        enableParticles(speedlines, speedlines:GetAttribute("EmitDuration") / 2)
+        
+        task.delay(0.7, function()
+            emitParticles(stoicHeatAttachment)
+            
+        end)
+        
+        task.wait(1.5)
+        
+        emitParticles(stoicAttachment)
+        emitParticles(stoicSmoke)
+        emitParticles(stoicBoom)
     end,
-    
-    
-    
 }
+handlers.amove4 = function()
+        local kjEffects = game.ReplicatedStorage.Resources.KJEffects
+        local stoicEffects = game.ReplicatedStorage.Resources.StoicBomb
+
+        local speedlines = kjEffects.stoicbombspeedlines.Attachment:Clone() speedlines.Parent = hrp
+        local stoicAttachment = kjEffects["stoic bomb boom entrance"].Attachment:Clone() stoicAttachment.Parent = hrp
+        local stoicSmoke = kjEffects["stoic bomb boom entrance"].smok:Clone() stoicSmoke.Parent = hrp
+        local stoicBoom = kjEffects["stoic bomb boom entrance"].THEACTUALBOOM:Clone() stoicBoom.Parent = hrp
+        local stoicHeatAttachment = stoicEffects.HEAT.Part.Attachment:Clone() stoicHeatAttachment.Parent = hrp
+
+        local effects = {
+            stoicEffects.Impact.Part.Attachment,
+            stoicEffects.Impact.Part.Spin,
+            stoicEffects.Impact.Part.Impact,
+            stoicEffects.Main.Part.Attachment,
+            stoicEffects.OHNO.Normal.Attachment,
+            stoicEffects.Ray.Ray.Attachment,
+            stoicEffects.SPREAD.Part.On,
+            stoicEffects.SPREAD.Part.WW,
+            stoicEffects.Stage1.Inverted.Normal.Attachment,
+            stoicEffects.Stage1.Wind["45"].Attachment,
+            stoicEffects.Stage1.Floor.Attachment,
+            stoicEffects.Whirl.Part.Attachment,
+            stoicEffects.Whirl.Part.Attachment.Debri,
+            stoicEffects.pre.Part.Attachment
+        }
+
+        enableParticles(speedlines, speedlines:GetAttribute("EmitDuration") / 2)
+
+        task.delay(0.7, function()
+            emitParticles(stoicHeatAttachment)
+
+            for _, effect in pairs(effects) do
+                local clone = effect:Clone()
+                clone.Parent = hrp
+                emitParticles(clone)
+            end
+        end)
+
+        task.wait(1.5)
+
+        emitParticles(stoicAttachment)
+        emitParticles(stoicSmoke)
+        emitParticles(stoicBoom)
+    end,
 handlers.move4 = function() -- ai did this part because IM FUCKING LAZY
     task.wait(0.5)
 
