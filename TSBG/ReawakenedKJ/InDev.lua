@@ -249,12 +249,12 @@ local function emitParticles(attachment: Attachment)
     end
 end
 
-local function enableParticles(attachment: Attachment)
+local function enableParticles(attachment: Attachment, duration: number)
     assert(attachment:IsA("Attachment"), "Particle container must be attachment!")
     for _, v in pairs(attachment:GetDescendants()) do
         if v:IsA("Attachment") then
             v.Enabled = true
-            task.wait(v:GetAttribute("EmitDuration") or 1, function()
+            task.delay(duration or v:GetAttribute("EmitDuration") or 1, function()
                 v.Enabled = false
             end)
         end
