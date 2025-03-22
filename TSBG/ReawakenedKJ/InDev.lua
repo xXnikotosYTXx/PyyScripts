@@ -195,6 +195,7 @@ end
 local hrp = char:FindFirstChild("HumanoidRootPart")
 
 local function playbfvfx(target)
+    local Debris = game:GetService("Debris")
     local char = lplr.Character or lplr.CharacterAdded:Wait()
     local torso = char:FindFirstChild("Torso")
     local ttorso = target:FindFirstChild("Torso")
@@ -208,6 +209,7 @@ local function playbfvfx(target)
         for _, v in ipairs(p1:GetChildren()) do
             if v:IsA("ParticleEmitter") then
                 v.LockedToPart = false
+                v.Rotation = NumberRange.new(0)
                 v:Emit(v:GetAttribute("EmitCount") or 1)
             end
         end
@@ -217,6 +219,7 @@ local function playbfvfx(target)
         for _, v in ipairs(p2:GetChildren()) do
             if v:IsA("ParticleEmitter") then
                 v.LockedToPart = false
+                v.Rotation = NumberRange.new(0)
                 v:Emit(v:GetAttribute("EmitCount") or 1)
             end
         end
