@@ -336,11 +336,11 @@ end)
 
 -- Handlers for each m1s, the ultimate anim, and moves (if it doesnt have handlers, it would be a blank custom moveset script with no vfx, no other stuff other than custom animations)
 local handlers = {
-    m1 = function() end,
-    m2 = function() end,
-    m3 = function() end,
-    m4 = function() end,
-    wc = function() end,
+    m1 = function() m1finisher() end,
+    m2 = function() m1finisher() end,
+    m3 = function() m1finisher() end,
+    m4 = function() m1finisher() end,
+    wc = function() m1finisher() end,
     fdash = function() end,
     bdash = function() end,
     ldash = function() end,
@@ -382,7 +382,7 @@ local handlers = {
     end,
 
     move1 = function()
-        task.wait(0.5)
+        task.wait(0.3)
         local wind = game.ReplicatedStorage.Resources.KJEffects.RUNAROUNDWIND.RUNAROUNDWIND:Clone()
         wind.Parent = hrp
         
@@ -519,7 +519,7 @@ local handlers = {
             stoicEffects.pre.Part.Attachment
         }
 
-        enableParticles(speedlines, speedlines:GetAttribute("EmitDuration") / 2)
+        enableParticles(speedlines)
 
         task.delay(0.7, function()
             emitParticles(stoicHeatAttachment)
