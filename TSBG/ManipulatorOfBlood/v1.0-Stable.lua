@@ -243,7 +243,7 @@ local handlers = {
         
         task.spawn(function()
             while true do
-                bv.Velocity = hrp.CFrame.LookVector * 500
+                bv.Velocity = hrp.CFrame.LookVector * 50
                 task.wait()
             end
         end)
