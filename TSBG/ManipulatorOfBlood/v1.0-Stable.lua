@@ -238,7 +238,7 @@ local handlers = {
         task.wait(0.5)
         local bv = Instance.new("BodyVelocity")
         bv.MaxForce = Vector3.new(math.huge, 0, math.huge)
-        bv.Velocity = hrp.CFrame.LookVector * 500
+        bv.Velocity = hrp.CFrame.LookVector * 750
         bv.Parent = hrp
         
         task.spawn(function()
