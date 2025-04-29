@@ -1,34 +1,9 @@
--- LICENSE.md
-print(game:HttpGet("https://raw.githubusercontent.com/scriptrblxs/PyyScripts/refs/heads/main/LICENSE.md"))
 
 local function notif(msg)
     game:GetService("StarterGui"):SetCore("SendNotification", {
         Title = "Reawakened KJ",
         Text = msg
     })
-end
-
--- Premium Check
-local verified = {
-    "oioioibaaka828828",
-    "skibidiSigm192919",
-}
-if not table.find(verified, game.Players.LocalPlayer.Name) and not table.find(game:GetService("HttpService"):JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Mukuro-Hoshimiya/Whitelist/refs/heads/main/whitelist.json")).whitelist, game.Players.LocalPlayer.Name) then
-notif("Premium checking, may take a while...")
-httpserv = game:GetService"HttpService"
-local keypoint = "https://pyy-api.glitch.me/v1/getpremiums"
-repeat task.wait(5) until game:HttpGet(keypoint)
-local data = httpserv:JSONDecode(game:HttpGet(keypoint))
-local isValid = false
-for _, v in pairs(data) do
-    local suc, id = pcall(function()
-        return game.Players:GetDataFromUsernameAsync(v)
-    end)
-    if id == game.Players.LocalPlayer.UserId then
-        isValid = true
-    end
-end
-if not isValid then game.Players.LocalPlayer:Kick("User is detected not to be a premium user while using premium script!") end
 end
 
 local lplr = game.Players.LocalPlayer
